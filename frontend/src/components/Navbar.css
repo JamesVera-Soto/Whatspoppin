@@ -1,0 +1,58 @@
+.title-bar{
+    background-color:rgb(22, 22, 22);
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    position: fixed;
+    z-index: 100;
+}
+
+.title-text {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h4.title-text {
+    float: right;
+    padding: 15px;
+}
+
+.nav-txt {
+    text-decoration: none;
+    color: white;
+}
+.nav-txt:hover {
+    color: rgb(252, 30, 141);    
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.navbar {
+    min-height: 80px;
+  }
+  
+  .navbar-brand {
+    padding: 0 15px;
+    height: 80px;
+  }
+  
+  .navbar-toggle {
+    /* (80px - button height 34px) / 2 = 23px */
+    margin-top: 23px;
+    padding: 9px 10px !important;
+  }
+  
+  @media (min-width: 768px) {
+    .navbar-nav > li > a {
+      /* (80px - line-height of 27px) / 2 = 26.5px */
+      padding-top: 26.5px;
+      padding-bottom: 26.5px;
+      line-height: 27px;
+    }
+  }

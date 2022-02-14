@@ -1,0 +1,31 @@
+.events-parent {
+    position: relative;
+}
+
+.events-child-map {
+    position: fixed;
+    top: 107px;
+}
+
+.events-child-events {
+    position: absolute;
+    top: 108px;
+    right: 50%;
+}
+
+.events-search {
+    display: table-cell;
+    position: absolute;
+    z-index: 10;
+    top: 5%;
+    left: calc(25vw - 150px);
+}
+
+.events-title {
+    height: auto;
+    position: fixed;
+    top: 80px;
+    width: 100%;
+    z-index: 10;
+    background-color: white;
+}

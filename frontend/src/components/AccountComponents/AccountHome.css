@@ -1,0 +1,46 @@
+.account-container {
+    position: relative;
+    height: calc(100vh - 106px);
+    background-color: rgb(231, 231, 231);
+}
+
+.account-side {
+    background-color: rgb(43, 43, 43);
+    color: white;
+    height: 100%;
+    width: 200px;
+    text-align: center;
+    position: absolute;
+    display: inline;
+}
+
+.account-avatar {
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding: 40px;
+}
+
+.account-side-list {
+    margin-top: 10vh;
+}
+
+.account-side-item {
+    font-size: 20px;
+    margin-top: 30px;
+    text-decoration: none;
+}
+.account-side-item:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(252, 30, 141);
+    text-decoration-thickness: 2px;
+}
+
+.account-content {
+    position: absolute;
+    width: calc(100vw - 200px);
+    right: 0;
+    padding: 50px;
+}

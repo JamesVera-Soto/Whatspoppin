@@ -1,0 +1,23 @@
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
+
+
+.pageTitle {
+    margin: auto;
+    text-align: center;
+    font-size: 23px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    display: table-cell;
+    position: relative;
+    height: 106px;
+    width: 100vw;
+    vertical-align: bottom;
+}

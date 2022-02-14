@@ -1,0 +1,43 @@
+.create-event-container {
+    width: 100%;  
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.create-event-form {
+    position: absolute;
+    width: 100%;
+    max-width: 780px;
+    min-width: none;
+    left: calc(50% - 390px);
+}
+@media (max-width: 780px) {
+    .create-event-form{
+        left: 0;
+    }
+}
+
+.event-dateTimePicker {
+    position: relative;
+    display: inline;
+}
+@media (max-width: 780px) {
+    .event-dateTimePicker{
+        display:block;
+    }
+}
+
+.btn-pink, .btn-pink:visited {
+    color: white !important;
+    background-color: rgb(252, 30, 141) !important;
+    border-color: rgb(221, 17, 119) !important;
+}
+.btn-pink:hover {
+    color: rgb(252, 30, 141) !important;
+    background-color: rgb(22, 22, 22) !important;
+    border-color: rgb(252, 30, 141) !important;
+}

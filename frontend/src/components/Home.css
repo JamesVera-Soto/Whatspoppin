@@ -1,0 +1,29 @@
+.banner-container {
+    position: relative;
+    height: 80vh;
+    min-width: 100%;
+}
+
+.banner-img {
+    background-image: url('./pageImages/pablo-heimplatz-ZODcBkEohk8-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    position: fixed;
+    height: 80vh;
+    width: 100%;
+    z-index: 1;
+}
+
+.home-page {
+    position: relative;
+    background-color: rgb(26, 26, 26);
+    z-index: 0;
+}
+
+.home-container1 {
+    position: relative;
+    background-color: white;
+    height: 70vh;
+    z-index: 2;
+}

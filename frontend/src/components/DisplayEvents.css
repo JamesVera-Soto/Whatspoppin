@@ -1,0 +1,49 @@
+.displayEvents {
+    position: absolute;
+    width: 48vw;
+    padding: 0;
+    left: 1vw;
+    border: none;
+    list-style-type: none;
+    margin: 0;
+}
+
+.address {
+    color: gray;
+    font-size: 10px;
+}
+
+.event {
+    padding: 5px;
+    background-color: rgb(168, 168, 168);
+    
+}
+.event:hover {
+    background-color: rgb(155, 190, 202);
+}
+.event::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 96%;
+    height: 5px;
+    left: 2%;
+    border-bottom: rgb(80, 78, 78) solid 1px;
+}
+
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+}
+
+.carousel-item {
+    width: 48vw;
+    height: 40vh;
+}
+.carousel-img {
+    display: block;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
