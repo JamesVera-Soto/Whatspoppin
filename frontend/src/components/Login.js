@@ -54,7 +54,7 @@ function Login() {
 		else{
 			setIncorrectField({
 				status: true,
-				hint: mes.data.status
+				hint: mes.data.hint
 			})
 		}
 

@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import './LoginSignup.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
+
+  const navigate = useNavigate();
 
   const blankInput = {
     username: "",
@@ -12,6 +15,10 @@ function Signup() {
   }
 
   const [signupInput, setSignupInput] = useState(blankInput)
+  const [incorrectField, setIncorrectField] = useState({
+		status: false,
+		hint: ""
+	})
 
   function handleChange(event){
       let {name, value} = event.target;
@@ -27,7 +34,7 @@ function Signup() {
       })
   }
 
-  function handleClick(event){
+  async function handleClick(event){
       event.preventDefault();
       console.log(signupInput);
 
@@ -38,9 +45,19 @@ function Signup() {
 
         const newUser = signupInput;
 
-        axios.post('http://localhost:3001/signup', newUser);
+        const mes = await axios.post('http://localhost:3001/signup', newUser);
 
-        setSignupInput(blankInput);
+        console.log(mes)
+
+        if(mes.status === 201){
+          navigate('/login');
+        }
+        else{
+          setIncorrectField({
+            status: true,
+            hint: mes.data.hint
+          })
+        }
       }
   }
 
@@ -71,6 +88,11 @@ function Signup() {
           <input onChange={handleChange} className="input100" type="password" name="confirmPassword" placeholder="Confirm Password" value={signupInput.confirmPassword}/>
           <span className="focus-input100" data-placeholder="&#xf023;"></span>
         </div>
+
+        {incorrectField.status ? 
+					<div>
+						<p className='errorHint'>{incorrectField.hint}</p>
+					</div> : null}
 
         <div className="container-login100-form-btn m-t-32">
           <button className="login100-form-btn" type="submit">

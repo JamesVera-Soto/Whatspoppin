@@ -1,0 +1,8 @@
+Bugs to fix:
+-unique file names
+-map re-positioning
+-map suggestions based on user location
+-add organizer, private, and update delete to events
+-create event preview page
+-userRoute change res.send to protect password
+-user login check if user login by username or email

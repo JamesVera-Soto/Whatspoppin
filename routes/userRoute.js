@@ -2,9 +2,14 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/userModel');
 
-
+const bcrypt = require('bcrypt')
 
 const multer = require('multer');
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -19,56 +24,73 @@ const upload = multer({storage: storage});
 
 
 
-router.route('/signup').post((req, res) => {
+router.route('/signup').post(async (req, res) => {
 
-    const dateCreated = new Date();
+    if(await User.findOne({username: req.body.username})){
+        res.send({success: false, hint: "username already exists"})
+    }
+    else if(await User.findOne({email: req.body.email})){
+        res.send({success: false, hint: "email already in use"})
+    }
+    else {
+        try {
+            const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
-    const newUser = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        memberSince: dateCreated,
-    })
+            const dateCreated = new Date();
 
-    newUser.save();
+            const newUser = new User({
+                username: req.body.username,
+                email: req.body.email,
+                password: hashedPassword,
+                memberSince: dateCreated,
+            })
+
+            newUser.save();
+            res.status(201).send()
+        } 
+        catch {
+            res.status(500).send()
+        }
+    }
 });
 
-router.route('/login').post((req, res) => {
+router.route('/login').post(async (req, res) => {
 
-    const url = req.protocol + '://' + req.get('host')
-    console.log(url)
+    const field = validateEmail(req.body.usernameEmail) ? "email" : "username"
 
-    const usernameEmail = req.body.usernameEmail;
-    const password = req.body.password;
-
-
-    User.findOne({username: usernameEmail}, (err, foundUser) => {
-        if(err) {
-            console.log(err);
-        } else {
-            if(foundUser) {
-                if(foundUser.password === password){
-                    console.log(foundUser);
-                    return res.send({
-                        success: true,
-                        status: "successful",
-                        user: foundUser,
-                    })
+    User.findOne({[field]: req.body.usernameEmail}, async (err, foundUser) => {
+        try {
+            if(err) {
+                console.log(err);
+            } else {
+                if(foundUser) {
+                    if(await bcrypt.compare(req.body.password, foundUser.password)){
+                        console.log(foundUser);
+                        return res.send({
+                            success: true,
+                            hint: "successful",
+                            user: foundUser,
+                        })
+                    }
+                    else {
+                        return res.send({
+                            success: false,
+                            hint: "incorrect password"
+                        })
+                    }
                 }
                 else {
                     return res.send({
                         success: false,
-                        status: "incorrect password"
+                        hint: "user not found"
                     })
                 }
             }
-            else {
-                return res.send({
-                    success: false,
-                    status: "user not found"
-                })
-            }
         }
+        catch {
+            res.status(500).send()
+        }
+        
     })
 })
 
