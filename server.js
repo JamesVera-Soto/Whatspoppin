@@ -1,4 +1,4 @@
-const MONGODB_EVENTSDB = require('./secrets')
+require('dotenv').config();
 
 const express = require('express');
 const app = express();
@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(MONGODB_EVENTSDB);
+mongoose.connect(process.env.MONGODB_EVENTSDB);
 
 app.use('/', require('./routes/eventRoute'));
 app.use('/', require('./routes/userRoute'));

@@ -6,15 +6,9 @@ import Carousel from 'react-bootstrap/Carousel'
 function DisplayEvents(props) {
 
     console.log(props.events);
-
-    try{
-         console.log(format(new Date(props.events[0].startDatetime), 'MMMM dd, yyyy, p'));
-    } catch {
-        console.log('err');
-    }
-//<img src={'/eventImages/' + event.imgs} alt="" width="500" />
-
-    return (
+    
+    return props.events.length === 0 ? <div className='displayEvents'>No events found</div> :
+    (
         <ul className='displayEvents'>
         {props.events.map((event, i) => {
             console.log(event.imgs)

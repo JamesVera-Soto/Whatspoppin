@@ -1,23 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import Search from './Search';
 import './CreateEvent.css';
 import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import axios from 'axios';
+import AuthApi from '../AuthApi';
 
 function CreateEvent() {
 
-    const [searchValues, setSearchValues] = useState({address: "", lat: 0, lng: 0, zoom: 1});
-
-    useEffect(() => {
-        setEventInput(prevInput => {
-            return {
-                ...prevInput,
-                address: searchValues.address,
-                lat: searchValues.lat,
-                lng: searchValues.lng,
-            }
-        })
-    }, [searchValues]);
+    const authUser = useContext(AuthApi)
 
     const blankEvent = {
         id: 1,
@@ -29,9 +19,22 @@ function CreateEvent() {
         imgs: "",
         startDatetime: "",
         endDatetime: "",
+        organizer: authUser.currentUser.username,
     }
 
+    const [searchValues, setSearchValues] = useState({address: "", lat: 0, lng: 0, zoom: 1});
     const [eventInput, setEventInput] = useState(blankEvent)
+
+    useEffect(() => {
+        setEventInput(prevInput => {
+            return {
+                ...prevInput,
+                address: searchValues.address,
+                lat: searchValues.lat,
+                lng: searchValues.lng,
+            }
+        })
+    }, [searchValues]);
 
     function handleChange(event){
         let {name, value} = event.target;
@@ -63,6 +66,8 @@ function CreateEvent() {
         formData.append("lng", searchValues.lng);
         formData.append("startDatetime", eventInput.startDatetime);
         formData.append("endDatetime", eventInput.endDatetime);
+        formData.append("organizer", authUser.currentUser.username);
+        formData.append("organizerId", authUser.currentUser._id);
         for(let img of eventInput.imgs){
             formData.append("imgs[]", img)
         }

@@ -26,9 +26,6 @@ function Navbar(props) {
                     <li className="nav-item">
                         <h4 className='title-text'><Link className='nav-txt' to='/events'>Events</Link></h4>
                     </li>
-                    <li className="nav-item">
-                        <h4 className='title-text'><Link className='nav-txt' to='/create-event'>Create Event</Link></h4>
-                    </li>
                     {!authUser.auth ? <>
                     <li className="nav-item">
                         <h4 className='title-text'><Link className='nav-txt' to='/login'>Log In</Link></h4>

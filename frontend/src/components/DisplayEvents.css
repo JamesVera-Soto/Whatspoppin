@@ -1,6 +1,6 @@
 .displayEvents {
     position: absolute;
-    width: 48vw;
+    width: 38vw;
     padding: 0;
     left: 1vw;
     border: none;
@@ -38,7 +38,7 @@ ul.no-bullets {
 }
 
 .carousel-item {
-    width: 48vw;
+    width: 38vw;
     height: 40vh;
 }
 .carousel-img {

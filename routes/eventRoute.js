@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/eventModel');
+const User = require('../models/userModel')
 //const upload = require('../middleware/upload');
 
 
@@ -31,8 +32,6 @@ router.post('/create-event', upload.any('imgs'), (req, res) => {
 
     const url = req.protocol + '://' + req.get('host')
 
-    console.log(req)
-
     var imgArr = []
     for(var img of req.files){
         var filename = img.originalname.replace(/[^a-zA-Z0-9-_\.]/g, '_');
@@ -47,14 +46,23 @@ router.post('/create-event', upload.any('imgs'), (req, res) => {
         lng: req.body.lng,
         startDatetime: req.body.startDatetime,
         endDatetime: req.body.endDatetime,
-        imgs: imgArr
+        imgs: imgArr,
+        organizer: req.body.organizer,
     })
 
-    newEvent.save();
+    newEvent.save(async(err, event) => {
+        console.log("EVENT: ",event)
+        await User.findByIdAndUpdate(req.body.organizerId, {$push: {userEvents: event._id}})
+    })
 });
 
 router.route('/events').get((req,res) => {
     Event.find().then(foundEvents => res.json(foundEvents));
+});
+
+router.route('/account/my-events/:id').get((req,res) => {
+    console.log("params",req.params)
+    Event.findById(req.params.id).then(foundEvents => res.json(foundEvents));
 });
 
 module.exports = router;

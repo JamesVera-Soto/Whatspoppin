@@ -4,7 +4,10 @@ const User = require('../models/userModel');
 
 const bcrypt = require('bcrypt')
 
+const jwt = require('jsonwebtoken')
+
 const multer = require('multer');
+const { JsonWebTokenError } = require('jsonwebtoken');
 
 function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
@@ -43,6 +46,7 @@ router.route('/signup').post(async (req, res) => {
                 email: req.body.email,
                 password: hashedPassword,
                 memberSince: dateCreated,
+                userEvents: [],
             })
 
             newUser.save();
@@ -65,7 +69,7 @@ router.route('/login').post(async (req, res) => {
             } else {
                 if(foundUser) {
                     if(await bcrypt.compare(req.body.password, foundUser.password)){
-                        console.log(foundUser);
+                        
                         return res.send({
                             success: true,
                             hint: "successful",

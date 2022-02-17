@@ -19,6 +19,10 @@ const usersSchema = new mongoose.Schema ({
     memberSince : {
         type: Date,
         required: true
+    },
+    userEvents: {
+        type: [String],
+        required: true
     }
 })
 

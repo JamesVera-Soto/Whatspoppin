@@ -1,6 +1,7 @@
 .account-container {
     position: relative;
     height: calc(100vh - 106px);
+    min-height: 700px;
     background-color: rgb(231, 231, 231);
 }
 

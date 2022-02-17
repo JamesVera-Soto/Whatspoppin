@@ -32,6 +32,10 @@ const eventsSchema = new mongoose.Schema ({
     imgs: {
         type: [String]
     },
+    organizer: {
+        type: String,
+        required: true
+    }
 })
 
 const Event = mongoose.model("Event", eventsSchema);

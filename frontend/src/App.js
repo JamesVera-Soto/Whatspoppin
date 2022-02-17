@@ -3,7 +3,7 @@ import './App.css'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './components/Navbar';
 import Home from './components/Home';
-import CreateEvent from './components/CreateEvent';
+import AccountCreateEvent from './components/AccountComponents/AccountCreateEvent';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Events from './components/Events';
@@ -45,8 +45,6 @@ function App() {
 
           <Route path="/events" element={<Events />} />
 
-          <Route path="/create-event" element={<CreateEvent />} />
-
           <Route path="/signup" element={<Signup />} />
 
           <Route path="/login" element={<Login />} />
@@ -56,6 +54,7 @@ function App() {
           <Route path="/account/friends" element={<PrivateRoute><Friends /></PrivateRoute>} />
           <Route path="/account/subscriptions" element={<PrivateRoute><Subscriptions /></PrivateRoute>} />
           <Route path="/account/notifications" element={<PrivateRoute><Notifications /></PrivateRoute>} />
+          <Route path="/account/create-event" element={<PrivateRoute><AccountCreateEvent /></PrivateRoute>} />
 
           <Route path="*" element={<NotFound />} />
 

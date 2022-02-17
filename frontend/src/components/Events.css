@@ -10,7 +10,7 @@
 .events-child-events {
     position: absolute;
     top: 108px;
-    right: 50%;
+    right: 40%;
 }
 
 .events-search {
@@ -18,7 +18,7 @@
     position: absolute;
     z-index: 10;
     top: 5%;
-    left: calc(25vw - 150px);
+    left: calc(30vw - 150px);
 }
 
 .events-title {

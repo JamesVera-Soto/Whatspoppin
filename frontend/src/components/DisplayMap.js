@@ -15,7 +15,7 @@ function DisplayMap(props) {
 
     
     const mapContainerStyle = {
-        width: '50vw',
+        width: '60vw',
         height: 'calc(100vh - 108px)',
     }
     const center = {
@@ -30,13 +30,6 @@ function DisplayMap(props) {
 
     const [markers, setMarkers] = useState([]);
     const [selected, setSelected] = useState(null);
-
-    const onMapClick = React.useCallback((event) => {
-        setMarkers(current => [...current, {
-            lat: event.latLng.lat(),
-            lng: event.latLng.lng(),
-        }]);
-    }, []);
 
 
     const mapRef = React.useRef();
@@ -80,13 +73,14 @@ function DisplayMap(props) {
 
     return (
         <div className='map-container'>
-            <Locate setSearched={props.setSearched} />
+            <span title='Find your location'>
+                <Locate setSearched={props.setSearched} />
+            </span>
             <GoogleMap 
             mapContainerStyle={mapContainerStyle} 
             zoom={props.searched.zoom} 
             center={center}
             options={options}
-            onClick={onMapClick}
             onLoad={onMapLoad}
             >
                 {markers.map((marker, i) => 

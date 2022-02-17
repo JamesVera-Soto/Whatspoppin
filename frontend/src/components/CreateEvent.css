@@ -1,6 +1,6 @@
 .create-event-container {
     width: 100%;  
-    min-height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -9,6 +9,7 @@
 }
 
 .create-event-form {
+    top: 50%;
     position: absolute;
     width: 100%;
     max-width: 780px;
