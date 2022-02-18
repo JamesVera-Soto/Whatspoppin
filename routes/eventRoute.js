@@ -62,7 +62,7 @@ router.route('/events').get((req,res) => {
 
 router.route('/account/my-events/:id').get((req,res) => {
     console.log("params",req.params)
-    Event.findById(req.params.id).then(foundEvents => res.json(foundEvents));
+    Event.find({organizer: req.params.id}).then(foundEvents => res.json(foundEvents));
 });
 
 module.exports = router;

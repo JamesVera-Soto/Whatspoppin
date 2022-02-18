@@ -18,10 +18,11 @@ function DisplayMap(props) {
         width: '60vw',
         height: 'calc(100vh - 108px)',
     }
-    const center = {
+    const [center, setCenter] = useState({
         lat: props.searched.lat,
         lng: props.searched.lng,
-    }
+    })
+
     const options = {
         styles: mapStyles,
         disableDefaultUI: true,
@@ -44,7 +45,7 @@ function DisplayMap(props) {
                 onClick={() => {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
-                            props.setSearched({
+                            setCenter({
                                 lat: position.coords.latitude,
                                 lng: position.coords.longitude,
                                 zoom: 10,
@@ -71,12 +72,19 @@ function DisplayMap(props) {
         })
     }, [props.events]);
 
+    function handleCenterChanged() {
+        if (!mapRef.current) return;
+        const newPos = mapRef.current.getCenter().toJSON();
+        setCenter(newPos);
+      }
+
     return (
         <div className='map-container'>
             <span title='Find your location'>
                 <Locate setSearched={props.setSearched} />
             </span>
             <GoogleMap 
+            onDragEnd={handleCenterChanged}
             mapContainerStyle={mapContainerStyle} 
             zoom={props.searched.zoom} 
             center={center}

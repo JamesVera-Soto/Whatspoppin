@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AccountSidebar from './AccountSidebar';
 import AuthApi from '../../AuthApi';
+import EventItem from './EventItem';
+import './EventItem.css'
 
 function MyEvents() {
 
@@ -15,11 +17,11 @@ function MyEvents() {
   url.search = new URLSearchParams(params).toString()
 
   useEffect(() => {
-    fetch('/account/my-events/' + authUser.currentUser.userEvents[0]).then(res => {
+    fetch('/account/my-events/' + authUser.currentUser.username).then(res => {
       if(res.ok) {
         return res.json();
       }
-    }).then(jsonRes => setEvents([jsonRes]));
+    }).then(jsonRes => setEvents(jsonRes));
     console.log("events",events)
   }, []);
 
@@ -32,7 +34,7 @@ function MyEvents() {
         <p>user events go here</p>
         {events.map(event => {
           return(
-            <div>{event.name}</div>
+            <EventItem event={event} />
           )
         })}
       </div>
