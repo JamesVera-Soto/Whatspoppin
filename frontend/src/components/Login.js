@@ -40,7 +40,7 @@ function Login() {
 
 		const returningUser = loginInput;
 
-        const mes = await axios.post('http://localhost:3001/login', returningUser);
+        const mes = await axios.post('/login', returningUser);
 
 		console.log(mes)
 

@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.fb6ee402.css",
-    "main.js": "/static/js/main.b8b62d0a.js",
+    "main.js": "/static/js/main.8393d9d2.js",
     "static/media/pablo-heimplatz-ZODcBkEohk8-unsplash.jpg": "/static/media/pablo-heimplatz-ZODcBkEohk8-unsplash.5fbf7a3b11691cdda83b.jpg",
     "index.html": "/index.html",
     "main.fb6ee402.css.map": "/static/css/main.fb6ee402.css.map",
-    "main.b8b62d0a.js.map": "/static/js/main.b8b62d0a.js.map"
+    "main.8393d9d2.js.map": "/static/js/main.8393d9d2.js.map"
   },
   "entrypoints": [
     "static/css/main.fb6ee402.css",
-    "static/js/main.b8b62d0a.js"
+    "static/js/main.8393d9d2.js"
   ]
 }

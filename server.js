@@ -10,6 +10,10 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_EVENTSDB);
 
+mongoose.connection.on("connected", () => {
+    console.log("Mongoose is connected!")
+})
+
 const PORT = process.env.PORT || 3001;
 
 app.set('trust proxy', 1) // trust first proxy
@@ -50,6 +54,7 @@ app.post('/signout', (req, res) => {
 })
 
 if(process.env.NODE_ENV === 'production') {
+    console.log("in production")
     app.use(express.static('frontend/build'))
 }
 

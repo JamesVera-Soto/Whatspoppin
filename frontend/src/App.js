@@ -33,7 +33,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/login").then(response => {
+    axios.get("/login").then(response => {
       console.log(response)
       setAuth(response.data.loggedIn)
       if(response.data.loggedIn) setCurrentUser(response.data.user)

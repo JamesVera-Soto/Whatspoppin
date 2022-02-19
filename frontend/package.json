@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://localhost",
   "dependencies": {
     "@reach/combobox": "^0.16.5",
     "@react-google-maps/api": "^2.7.0",

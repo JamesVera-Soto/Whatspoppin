@@ -72,7 +72,7 @@ function CreateEvent() {
             formData.append("imgs[]", img)
         }
 
-        axios.post('http://localhost:3001/create-event', formData);
+        axios.post('/create-event', formData);
 
         setEventInput(blankEvent);
     }
