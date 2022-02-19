@@ -2,17 +2,20 @@ import './Navbar.css';
 import React, { useContext } from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import AuthApi from '../AuthApi';
+import axios from 'axios';
 
 function Navbar(props) {
 
     const authUser = useContext(AuthApi)
 
-    const SignOut = () => {
+    const SignOut = async () => {
+        await axios.post('/signout')
         authUser.setAuth(false)
         authUser.setCurrentUser(null)
     }
 
     console.log("navbar: ", authUser)
+
 
     return (
         <nav className="navbar navbar-expand-lg title-bar py-0">

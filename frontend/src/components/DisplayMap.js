@@ -21,6 +21,7 @@ function DisplayMap(props) {
     const [center, setCenter] = useState({
         lat: props.searched.lat,
         lng: props.searched.lng,
+        zoom: 1
     })
 
     const options = {
@@ -86,7 +87,7 @@ function DisplayMap(props) {
             <GoogleMap 
             onDragEnd={handleCenterChanged}
             mapContainerStyle={mapContainerStyle} 
-            zoom={props.searched.zoom} 
+            zoom={center.zoom} 
             center={center}
             options={options}
             onLoad={onMapLoad}

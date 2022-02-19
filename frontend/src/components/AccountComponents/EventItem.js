@@ -2,6 +2,7 @@ import React from 'react';
 import './EventItem.css'
 import { format } from 'date-fns'
 import Carousel from 'react-bootstrap/Carousel'
+import axios from 'axios'
 
 function EventItem(props) {
 
@@ -9,9 +10,20 @@ function EventItem(props) {
     if(props.event.imgs.length === 0) props.event.imgs = ['placeholder-image.png']
     if(props.event.imgs.length === 1) multipleImages = false
 
+    function deleteEvent() {
+        axios.post('/account/my-events/delete', {id: props.event._id})
+    }
+
   return <div className='event-item'>
     <span title='delete'>
-        <button className='event-item-del-btn'><i className="fas fa-ban"></i></button>
+        <button className='event-item-del-btn' onClick={() => {
+            var result = window.confirm("Are you sure you want to delete this event?")
+            if(result) {
+                console.log("deleting")
+                console.log(deleteEvent())
+                props.changeOccured(prevVal => {return prevVal+1})
+            }
+        }}><i className="fas fa-ban"></i></button>
     </span>
     <span title='view'>
         <button className='event-item-view-btn'><i className="fas fa-eye"></i></button>

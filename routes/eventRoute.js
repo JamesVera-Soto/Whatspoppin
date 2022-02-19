@@ -65,4 +65,16 @@ router.route('/account/my-events/:id').get((req,res) => {
     Event.find({organizer: req.params.id}).then(foundEvents => res.json(foundEvents));
 });
 
+router.route('/account/my-events/delete').post((req, res) => {
+    Event.findByIdAndDelete(req.body.id, (err, docs) => {
+        if(err){
+            console.log(err)
+        }
+        else {
+            console.log("Deleted: ", docs)
+            res.status(200).send()
+        }
+    })
+})
+
 module.exports = router;

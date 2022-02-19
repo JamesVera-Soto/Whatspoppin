@@ -1,6 +1,13 @@
 const express = require('express');
+const session = require('express-session')
+const MongoDBSession = require('connect-mongodb-session')(session)
 const router = express.Router();
 const User = require('../models/userModel');
+
+const store = new MongoDBSession({
+    uri: process.env.MONGODB_EVENTSDB,
+    collection: 'userSessions',
+})
 
 const bcrypt = require('bcrypt')
 
@@ -58,6 +65,14 @@ router.route('/signup').post(async (req, res) => {
     }
 });
 
+router.route('/login').get((req, res) => {
+    if(req.session.user) {
+        res.send({loggedIn: true, user: req.session.user})
+    } else {
+        res.send({loggedIn: false})
+    }
+})
+
 router.route('/login').post(async (req, res) => {
 
     const field = validateEmail(req.body.usernameEmail) ? "email" : "username"
@@ -69,7 +84,8 @@ router.route('/login').post(async (req, res) => {
             } else {
                 if(foundUser) {
                     if(await bcrypt.compare(req.body.password, foundUser.password)){
-                        
+                        req.session.user = foundUser
+                        console.log(req.session)
                         return res.send({
                             success: true,
                             hint: "successful",

@@ -12,7 +12,7 @@ function AccountSidebar() {
     }
 
   return <div className='account-side'>
-        <img src='/Screenshot_2021.png' className='account-avatar' alt=''></img>
+        <img src='/person-placeholder.png' className='account-avatar' alt=''></img>
         <p>{authUser.currentUser.username}</p>
 
         <ul className='account-side-list'>

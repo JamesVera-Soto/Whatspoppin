@@ -7,6 +7,7 @@ import './EventItem.css'
 function MyEvents() {
 
   const [events, setEvents] = useState([]);
+  const [changeOccured, setChangeOccured] = useState(0)
 
   const authUser = useContext(AuthApi)
 
@@ -22,8 +23,7 @@ function MyEvents() {
         return res.json();
       }
     }).then(jsonRes => setEvents(jsonRes));
-    console.log("events",events)
-  }, []);
+  }, [changeOccured]);
 
   return <div>
     <h4 className='pageTitle'>My Events</h4>
@@ -34,7 +34,7 @@ function MyEvents() {
         <p>user events go here</p>
         {events.map(event => {
           return(
-            <EventItem event={event} />
+            <EventItem event={event} changeOccured={setChangeOccured} />
           )
         })}
       </div>

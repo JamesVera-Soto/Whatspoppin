@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './App.css'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from './components/Navbar';
@@ -26,13 +27,23 @@ function App() {
     libraries,
   });
 
+  axios.defaults.withCredentials = true
+
   const [auth, setAuth] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/login").then(response => {
+      console.log(response)
+      setAuth(response.data.loggedIn)
+      if(response.data.loggedIn) setCurrentUser(response.data.user)
+    })
+  }, [])
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading..";
 
-
+  
 
   return  (
     <AuthApi.Provider value={{auth, setAuth, currentUser, setCurrentUser}}>
