@@ -56,8 +56,13 @@ app.post('/signout', (req, res) => {
 if(process.env.NODE_ENV === 'production') {
     console.log("in production")
     app.use(express.static('frontend/build'))
+
+    const path = require('path')
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    })
 }
 
 app.listen(PORT, function() {
-    console.log('express server is running on port 3001');
+    console.log('express server is running on port: ' + PORT);
 })
