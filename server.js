@@ -8,7 +8,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_EVENTSDB);
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_EVENTSDB);
+
+const PORT = process.env.PORT || 3001;
 
 app.set('trust proxy', 1) // trust first proxy
 
@@ -47,6 +49,10 @@ app.post('/signout', (req, res) => {
     })
 })
 
-app.listen(3001, function() {
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'))
+}
+
+app.listen(PORT, function() {
     console.log('express server is running on port 3001');
 })
