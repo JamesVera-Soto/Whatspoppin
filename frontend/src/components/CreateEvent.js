@@ -86,6 +86,9 @@ function CreateEvent() {
         setEventInput(blankEvent);
     }
 
+    if (loadError) return "Error";
+    if (!isLoaded) return "Loading..";
+
   return <div className='create-event-container'>
       <div className='create-event-form'>
       <h4 className='pageTitle'>Create Event</h4>

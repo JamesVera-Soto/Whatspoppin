@@ -3,6 +3,7 @@ const router = express.Router();
 const Event = require('../models/eventModel');
 const User = require('../models/userModel')
 //const upload = require('../middleware/upload');
+const path = require('path')
 
 
 
@@ -11,7 +12,7 @@ const { append } = require('vary');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './eventImages/');
+        cb(null, path.join(__dirname + '/eventImages/'));
     },
     filename: (req, file, cb) => {
         try {
