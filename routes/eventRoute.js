@@ -12,7 +12,7 @@ const { append } = require('vary');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname + '/eventImages/'));
+        cb(null, './frontend/build/eventImages');
     },
     filename: (req, file, cb) => {
         try {
