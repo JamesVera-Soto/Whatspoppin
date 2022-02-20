@@ -4,8 +4,17 @@ import './CreateEvent.css';
 import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import axios from 'axios';
 import AuthApi from '../AuthApi';
+import {useLoadScript} from "@react-google-maps/api";
+
+const libraries = ['places'];
 
 function CreateEvent() {
+
+
+    const {isLoaded, loadError} = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        libraries,
+    });
 
     const authUser = useContext(AuthApi)
 
