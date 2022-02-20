@@ -3,8 +3,16 @@ import Search from './Search';
 import DisplayMap from './DisplayMap';
 import DisplayEvents from './DisplayEvents';
 import './Events.css';
+import {useLoadScript} from "@react-google-maps/api";
+
+const libraries = ['places'];
 
 function Events() {
+
+  const {isLoaded, loadError} = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries,
+  });
 
   const [searchValues, setSearchValues] = useState({address: "", lat: 0, lng: 0, zoom: 1});
 
@@ -28,6 +36,10 @@ function Events() {
   }, [searchValues]);
 
   console.log(events);
+
+  
+  if (loadError) return "Error";
+  if (!isLoaded) return "Loading..";
 
   return (
     <div>

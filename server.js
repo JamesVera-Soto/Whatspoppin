@@ -53,8 +53,8 @@ app.post('/signout', (req, res) => {
     })
 })
 
-if(process.env.NODE_ENV === 'production') {
-    console.log("in production")
+if(true || process.env.NODE_ENV === 'production') {
+    console.log("production")
     app.use(express.static('frontend/build'))
 
     const path = require('path')

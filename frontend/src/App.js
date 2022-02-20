@@ -13,19 +13,12 @@ import MyEvents from './components/AccountComponents/MyEvents';
 import Friends from './components/AccountComponents/Friends';
 import Subscriptions from './components/AccountComponents/Subscriptions';
 import Notifications from './components/AccountComponents/Notifications';
-import {useLoadScript} from "@react-google-maps/api";
 import AuthApi from './AuthApi';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './components/NotFound';
 
-const libraries = ['places'];
 
 function App() {
-
-  const {isLoaded, loadError} = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
 
   axios.defaults.withCredentials = true
 
@@ -39,9 +32,6 @@ function App() {
       if(response.data.loggedIn) setCurrentUser(response.data.user)
     })
   }, [])
-
-  if (loadError) return "Error";
-  if (!isLoaded) return "Loading..";
 
   
 
