@@ -11,8 +11,6 @@ frontend/node_modules
 /coverage
 
 # dir to ignore
-frontend/public/eventImages/
-frontend/public/userImages/
 frontend/.env.local
 
 # production
