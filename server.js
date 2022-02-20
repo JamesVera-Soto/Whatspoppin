@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_EVENTSDB);
 
 mongoose.connection.on("connected", () => {
-    console.log("Mongoose is connected!")
+    console.log("Mongoose is connected!!")
 })
 
 const PORT = process.env.PORT || 3001;
