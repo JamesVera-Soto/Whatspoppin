@@ -24,6 +24,14 @@ function DisplayMap(props) {
         zoom: 1
     })
 
+    useEffect(() => {
+        setCenter({
+            lat: props.searched.lat,
+            lng: props.searched.lng,
+            zoom: props.searched.lat === 0 ? 1 : 10
+        })
+    }, [props.searched])
+
     const options = {
         styles: mapStyles,
         disableDefaultUI: true,

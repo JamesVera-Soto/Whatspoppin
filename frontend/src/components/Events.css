@@ -22,9 +22,9 @@
 }
 
 .events-title {
-    height: auto;
+    height: 50px;
     position: fixed;
-    top: 80px;
+    top: 60px;
     width: 100%;
     z-index: 10;
     background-color: white;

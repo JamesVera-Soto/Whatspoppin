@@ -45,7 +45,7 @@ function Signup() {
 
         const newUser = signupInput;
 
-        const mes = await axios.post('/signup', newUser);
+        const mes = await axios.post('http://localhost:3001/signup', newUser);
 
         console.log(mes)
 

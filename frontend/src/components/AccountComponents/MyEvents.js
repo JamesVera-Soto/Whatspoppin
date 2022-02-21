@@ -3,11 +3,12 @@ import AccountSidebar from './AccountSidebar';
 import AuthApi from '../../AuthApi';
 import EventItem from './EventItem';
 import './EventItem.css'
+import axios from 'axios'
 
 function MyEvents() {
 
   const [events, setEvents] = useState([]);
-  const [changeOccured, setChangeOccured] = useState(0)
+  const [updated, setUpdated] = useState(false)
 
   const authUser = useContext(AuthApi)
 
@@ -18,23 +19,32 @@ function MyEvents() {
   url.search = new URLSearchParams(params).toString()
 
   useEffect(() => {
-    fetch('/account/my-events/' + authUser.currentUser.username).then(res => {
+    fetch('http://localhost:3001/account/my-events/' + authUser.currentUser.username).then(res => {
       if(res.ok) {
         return res.json();
       }
     }).then(jsonRes => setEvents(jsonRes));
-  }, [changeOccured]);
+  }, [updated]);
+
+  async function deleteEvent(id) {
+    var result = window.confirm("Are you sure you want to delete this event?")
+    if(result) {
+        console.log("deleting")
+        const mes = await axios.post('/account/my-events/delete', {id: id})
+        console.log(mes)
+        setUpdated(!updated)
+    }
+  }
 
   return <div>
-    <h4 className='pageTitle'>My Events</h4>
     <div className='account-container'>
       <AccountSidebar />
 
       <div className='account-content'>
-        <p>user events go here</p>
+        <p>My Events</p>
         {events.map(event => {
           return(
-            <EventItem event={event} changeOccured={setChangeOccured} />
+            <EventItem event={event} onDelete={deleteEvent} />
           )
         })}
       </div>

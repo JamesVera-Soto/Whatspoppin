@@ -34,12 +34,12 @@ ul {
 }
 
 .navbar {
-    min-height: 80px;
+    min-height: 60px;
   }
   
   .navbar-brand {
     padding: 0 15px;
-    height: 80px;
+    height: 60px;
   }
   
   .navbar-toggle {

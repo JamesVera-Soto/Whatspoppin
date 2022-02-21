@@ -3,7 +3,6 @@ import AccountSidebar from './AccountSidebar';
 
 function Notifications() {
   return <div>
-    <h4 className='pageTitle'>Notifications</h4>
     <div className='account-container'>
       <AccountSidebar />
 

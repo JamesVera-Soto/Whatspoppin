@@ -31,13 +31,14 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser())
 
+var hour = 3600000
 app.use(session({
     key: "user",
     secret: 'key that will sign the cookie',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 24,
+        expires: hour,
     },
     store: store,
 }))
@@ -53,7 +54,7 @@ app.post('/signout', (req, res) => {
     })
 })
 
-if(true || process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV === 'production') {
     console.log("production")
     app.use(express.static('frontend/build'))
 

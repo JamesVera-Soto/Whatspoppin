@@ -16,6 +16,7 @@ import Notifications from './components/AccountComponents/Notifications';
 import AuthApi from './AuthApi';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './components/NotFound';
+import ViewEvent from './components/ViewEvent';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    axios.get("/login").then(response => {
+    axios.get("http://localhost:3001/login").then(response => {
       console.log(response)
       setAuth(response.data.loggedIn)
       if(response.data.loggedIn) setCurrentUser(response.data.user)
@@ -56,6 +57,8 @@ function App() {
           <Route path="/account/subscriptions" element={<PrivateRoute><Subscriptions /></PrivateRoute>} />
           <Route path="/account/notifications" element={<PrivateRoute><Notifications /></PrivateRoute>} />
           <Route path="/account/create-event" element={<PrivateRoute><AccountCreateEvent /></PrivateRoute>} />
+
+          <Route path="/event/:id" element={<ViewEvent />} />
 
           <Route path="*" element={<NotFound />} />
 

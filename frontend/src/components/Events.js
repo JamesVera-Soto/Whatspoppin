@@ -28,7 +28,7 @@ function Events() {
   }]);
 
   useEffect(() => {
-    fetch('/events').then(res => {
+    fetch('http://localhost:3001/events').then(res => {
       if(res.ok) {
         return res.json();
       }

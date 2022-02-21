@@ -3,7 +3,6 @@ import AccountSidebar from './AccountSidebar';
 
 function Friends() {
   return <div>
-    <h4 className='pageTitle'>Friends</h4>
     <div className='account-container'>
       <AccountSidebar />
 

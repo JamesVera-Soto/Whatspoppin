@@ -3,7 +3,6 @@ import './Home.css';
 
 function Home() {
   return <div className='home-page'>
-    <h4 className='pageTitle'>Home</h4>
     <div className='banner-container'>
      <div className='banner-img'></div>
     </div>

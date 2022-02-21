@@ -52,13 +52,32 @@ router.post('/create-event', upload.any('imgs'), (req, res) => {
     })
 
     newEvent.save(async(err, event) => {
-        console.log("EVENT: ",event)
-        await User.findByIdAndUpdate(req.body.organizerId, {$push: {userEvents: event._id}})
-    })
+        if(err) {
+            res.send({"success": false, "hint": err.message})
+        }
+        else{
+            await User.findByIdAndUpdate(req.body.organizerId, {$push: {userEvents: event._id}})
+            res.status(201).send()
+        }
+    })    
+
+    
 });
 
 router.route('/events').get((req,res) => {
     Event.find().then(foundEvents => res.json(foundEvents));
+});
+
+router.route('/event/:id').get((req,res) => {
+    console.log("params for event", req.params)
+    Event.findById(req.params.id, (err, data) => {
+        if(!err) {
+            res.send(data)
+        } else {
+            console.log(err)
+            res.send({name: "Could not find", success: false})
+        }
+    })
 });
 
 router.route('/account/my-events/:id').get((req,res) => {

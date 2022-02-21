@@ -9,7 +9,6 @@ function AccountHome() {
   const authUser = useContext(AuthApi)
 
   return <div>
-    <h4 className='pageTitle'>Account Home</h4>
     <div className='account-container'>
       <AccountSidebar />
 

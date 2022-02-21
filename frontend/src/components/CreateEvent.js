@@ -5,11 +5,13 @@ import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import axios from 'axios';
 import AuthApi from '../AuthApi';
 import {useLoadScript} from "@react-google-maps/api";
+import { useNavigate } from 'react-router-dom'
 
 const libraries = ['places'];
 
 function CreateEvent() {
 
+    const navigate = useNavigate()
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -33,6 +35,12 @@ function CreateEvent() {
 
     const [searchValues, setSearchValues] = useState({address: "", lat: 0, lng: 0, zoom: 1});
     const [eventInput, setEventInput] = useState(blankEvent)
+
+    const [incorrectField, setIncorrectField] = useState({
+		status: false,
+		hint: "",
+        success: false
+	})
 
     useEffect(() => {
         setEventInput(prevInput => {
@@ -63,7 +71,7 @@ function CreateEvent() {
         })
     }
 
-    function handleClick(event){
+    async function handleClick(event){
         event.preventDefault();
 
         const formData = new FormData();
@@ -81,9 +89,24 @@ function CreateEvent() {
             formData.append("imgs[]", img)
         }
 
-        axios.post('/create-event', formData);
+        const mes = await axios.post('http://localhost:3001/create-event', formData);
 
-        setEventInput(blankEvent);
+        console.log(mes)
+
+        if(mes.status === 201){
+            setIncorrectField({
+                status: true,
+                hint: "Event created successfully!",
+                success: true
+            })
+        }
+        else{
+            setIncorrectField({
+              status: true,
+              hint: mes.data.hint,
+              success: false
+            })
+        }
     }
 
     if (loadError) return "Error";
@@ -94,10 +117,10 @@ function CreateEvent() {
       <h4 className='pageTitle'>Create Event</h4>
         <form onSubmit={handleClick} className='p-5' encType='multipart/form-data'>
             <div className='form-group mb-3'>
-            <input name='name' onChange={handleChange} autoComplete='off' className='form-control' placeholder='name' value={eventInput.name}></input>
+            <input name='name' onChange={handleChange} autoComplete='off' className='form-control' placeholder='name' value={eventInput.name} required></input>
             </div>
 
-            <textarea name='description' onChange={handleChange} autoComplete='off' className='form-control form-control mb-3' rows={3} placeholder='description' value={eventInput.description}></textarea>
+            <textarea name='description' onChange={handleChange} autoComplete='off' className='form-control form-control mb-3' rows={3} placeholder='description' value={eventInput.description} required></textarea>
 
             <div className="custom-file mb-3">
                 <Search onChange={handleChange} setSearchValues={setSearchValues} value={eventInput.address} />
@@ -113,7 +136,10 @@ function CreateEvent() {
                 <input name='imgs' filename='imgs' onChange={handleChange} className="form-control" type="file" id="formFileMultiple" multiple />
             </div>
 
-            
+            {incorrectField.status ? 
+					<div>
+						<p className='errorHint' style={{color: [incorrectField.success ? 'green' : 'red']}}>{incorrectField.hint}</p>
+					</div> : null}
 
             <button type='submit' className='btn btn-lg btn-info btn-pink'>Add Event</button>
         </form>

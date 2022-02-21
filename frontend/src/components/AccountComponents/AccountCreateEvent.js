@@ -4,7 +4,6 @@ import AccountSidebar from './AccountSidebar';
 
 function AccountCreateEvent() {
     return <div>
-    <h4 className='pageTitle'>Create Event</h4>
     <div className='account-container'>
       <AccountSidebar />
 
