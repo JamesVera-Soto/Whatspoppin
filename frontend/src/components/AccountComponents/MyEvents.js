@@ -4,9 +4,11 @@ import AuthApi from '../../AuthApi';
 import EventItem from './EventItem';
 import './EventItem.css'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function MyEvents() {
 
+  const navigate = useNavigate()
   const [events, setEvents] = useState([]);
   const [updated, setUpdated] = useState(false)
 
@@ -36,6 +38,10 @@ function MyEvents() {
     }
   }
 
+  function viewEvent(id) {
+    navigate('/event/' + id)
+  }
+
   return <div>
     <div className='account-container'>
       <AccountSidebar />
@@ -44,7 +50,7 @@ function MyEvents() {
         <p>My Events</p>
         {events.map(event => {
           return(
-            <EventItem event={event} onDelete={deleteEvent} />
+            <EventItem event={event} onDelete={deleteEvent} onView={viewEvent} />
           )
         })}
       </div>

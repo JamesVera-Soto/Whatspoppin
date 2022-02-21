@@ -26,6 +26,7 @@ function ViewEvent() {
   }, []);
 
   console.log(event)
+  
 
   if(event.success === false) return <div>
     <h4 className='pageTitle'>View event here: {id}</h4>
@@ -35,7 +36,13 @@ function ViewEvent() {
   </div>;
 
   else return <div>
-    <h4 className='pageTitle'>Yoo</h4>
+    <h4 className='pageTitle'>{event.name}</h4>
+    <p>{event.description}</p>
+    <p>{event.address}</p>
+    <p>{event.startDatetime}</p>
+    <p>{event.endDatetime}</p>
+    <p>{event.organizer}</p>
+    <iframe name="gMap" src={`https://www.google.com/maps/embed/v1/place?q=${event.lat},${ event.lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`} width="400px" height="400px"></iframe>
   </div>
 }
 

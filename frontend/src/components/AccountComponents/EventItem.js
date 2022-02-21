@@ -13,16 +13,24 @@ function EventItem(props) {
         props.onDelete(props.event._id)
     }
 
+    function handleOnClickView() {
+        props.onView(props.event._id)
+    }
+
+    function handleOnClickEdit() {
+        props.onEdit(props.event._id)
+    }
+
 
   return <div className='event-item'>
     <span title='delete'>
         <button className='event-item-del-btn' onClick={handleOnClickDelete}><i className="fas fa-ban"></i></button>
     </span>
     <span title='view'>
-        <button className='event-item-view-btn'><i className="fas fa-eye"></i></button>
+        <button className='event-item-view-btn' onClick={handleOnClickView}><i className="fas fa-eye"></i></button>
     </span>
     <span title='edit'>
-        <button className='event-item-edit-btn'><i className="fas fa-edit"></i></button>
+        <button className='event-item-edit-btn' onClick={handleOnClickEdit}><i className="fas fa-edit"></i></button>
     </span>
     <Carousel controls={multipleImages} interval={null}>
                         {props.event.imgs.map(img => {
