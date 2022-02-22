@@ -14,14 +14,14 @@ function MyEvents() {
 
   const authUser = useContext(AuthApi)
 
-  console.log("username",authUser.currentUser.username)
+  console.log("username",authUser.currentUser)
 
   var url = new URL('http://localhost:3000/account/my-events')
   var params = {organizer: authUser.currentUser.currentUser}
   url.search = new URLSearchParams(params).toString()
 
   useEffect(() => {
-    fetch('http://localhost:3001/account/my-events/' + authUser.currentUser.username).then(res => {
+    fetch('http://localhost:3001/account/my-events/' + authUser.currentUser._id).then(res => {
       if(res.ok) {
         return res.json();
       }

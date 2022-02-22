@@ -37,13 +37,20 @@ ul.no-bullets {
     margin: 0; /* Remove margins */
 }
 
-.carousel-item {
+.DEcarousel-item {
     width: 38vw;
     height: 40vh;
 }
-.carousel-img {
+.DEcarousel-img {
     display: block;
     height: 100%;
     width: auto;
     object-fit: contain;
+}
+
+.DEtitle-txt {
+    color: black;
+}
+.DEtitle-txt:hover {
+    color: rgb(252, 30, 141);    
 }

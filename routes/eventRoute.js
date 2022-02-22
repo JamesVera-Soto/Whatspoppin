@@ -80,9 +80,11 @@ router.route('/event/:id').get((req,res) => {
     })
 });
 
-router.route('/account/my-events/:id').get((req,res) => {
+router.route('/account/my-events/:userId').get(async(req,res) => {
     console.log("params",req.params)
-    Event.find({organizer: req.params.id}).then(foundEvents => res.json(foundEvents));
+    const user = await User.findById(req.params.userId)
+    
+    Event.find({_id: {$in: user.userEvents}}).then(foundEvents => res.json(foundEvents));
 });
 
 router.route('/account/my-events/delete').post((req, res) => {
@@ -92,6 +94,13 @@ router.route('/account/my-events/delete').post((req, res) => {
         }
         else {
             console.log("Deleted: ", docs)
+            User.findOneAndUpdate({username: docs.organizer}, {$pull: {userEvents: docs._id}}, (err, docs) => {
+                if(err){
+                    console.log(err)
+                } else {
+                    console.log("doc before update: ", docs)
+                }
+            })
             res.status(200).send()
         }
     })
