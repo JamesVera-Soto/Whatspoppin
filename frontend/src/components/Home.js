@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel'
 
 function Home() {
+
+  const navigate = useNavigate()
 
   const folder = '/pageImages/'
   const imgs = [
@@ -38,9 +41,9 @@ function Home() {
             })}
         </Carousel>
         <div className='homeRegisterBox'>
-            <button className='homeRegister-btn'>Log In</button>
-            <button className='homeRegister-btn'>Sign Up</button>
-            <button className='homeRegister-btn'>Find Events</button>
+            <button className='homeRegister-btn' onClick={() => {navigate('/login')}}>Log In</button>
+            <button className='homeRegister-btn' onClick={() => {navigate('/signup')}}>Sign Up</button>
+            <button className='homeRegister-btn' onClick={() => {navigate('/events')}}>Find Events</button>
         </div>
       </div>
     </div>
@@ -63,27 +66,27 @@ function Home() {
         <div className='r2c2-other-panel'></div>
         <div className='r2c2-text-panel'>
           <h2>Dicover New Places</h2>
-          <p>With friends</p>
+          <p>With friends or just to get away</p>
         </div>
           <img className='home-content-c2-img' src='/pageImages/small/gettyimages-1159841835-612x612.jpg' alt='carnival game' />
       </div>
 
-      <div className='home-content-r2-c2'>
-        <div className='r2c2-other-panel'></div>
-        <div className='r2c2-text-panel'>
-          <h2>Dicover New Places</h2>
-          <p>With friends</p>
+      <div className='home-content-r2-c4'>
+        <div className='r2c4-other-panel'></div>
+        <div className='r2c4-text-panel'>
+          <h2>Stay Up to Date</h2>
+          <p>Follow your favorite organizers and venues</p>
         </div>
-          <img className='home-content-c2-img' src='/pageImages/small/gettyimages-1148769679-612x612.jpg' height="360px" alt='carnival game' />
+          <img className='home-content-c4-img' src='/pageImages/small/gettyimages-1148769679-612x612.jpg' height="360px" alt='carnival game' />
       </div>
 
-      <div className='home-content-r2-c1'>
-        <div className='r2c1-other-panel'></div>
-        <img className='home-content-c1-img' src='/pageImages/small/gettyimages-1157908388-612x612.jpg' height="360px" alt='city' />
-        <div className='r2c1-text-panel'>
-          <div className='r2c1-text'>
-            <h2>Find Events Near You</h2>
-            <p>Traveling to a new city and looking for what to do? Or just looking to find something new in your city? Whats Poppin has all the events you're looking for.</p>
+      <div className='home-content-r2-c3'>
+        <div className='r2c3-other-panel'></div>
+        <img className='home-content-c3-img' src='/pageImages/small/gettyimages-1157908388-612x612.jpg' height="360px" alt='city' />
+        <div className='r2c3-text-panel'>
+          <div className='r2c3-text'>
+            <h2>Join Group Activities</h2>
+            <p>Socialize by joining one or more of many group events</p>
           </div>
         </div>
       </div>
