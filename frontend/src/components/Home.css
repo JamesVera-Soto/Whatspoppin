@@ -28,11 +28,13 @@
     z-index: 0;
 }
 
-.home-container1 {
-    position: relative;
-    background-color: white;
-    height: 70vh;
+.banner-txt {
+    color: white;
+    position: fixed;
+    text-shadow: 3px 3px 3px rgb(252, 30, 141);
+    top: 60px;
     z-index: 2;
+    left: calc(50% - 150px);
 }
 
 .home-carousel {
@@ -48,4 +50,173 @@
     height: 100%;
     width: auto;
     object-fit: cover;
+}
+
+.homeRegisterBox {
+    height: 400px;
+    width: 300px;
+    background-color: rgba(43, 43, 43, 0.9);
+    border-radius: 50px;
+    border: 3px solid black;
+    z-index: 3;
+    position: fixed;
+    top: calc(45% - 200px);
+    right: calc(20% - 60px);
+    box-shadow: 6px 6px 6px rgba(95, 33, 71, 0.7);
+}
+
+.homeRegister-btn {
+    font-family: Ubuntu-Bold;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    fill-opacity: 1;
+    left: calc(50% - 90px);
+
+    margin-top: 65px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 180px;
+    height: 42px;
+    border-radius: 21px;
+
+    background: rgb(197, 24, 111);
+    background: -webkit-linear-gradient('to right', #a445b2, #d41872, #fa4299);
+    background: -o-linear-gradient('to right', #a445b2, #d41872, #fa4299);
+    background: -moz-linear-gradient('to right', #a445b2, #d41872, #fa4299);
+    background: linear-gradient('to right', #a445b2, #d41872, #fa4299);
+    position: relative;
+    z-index: 1;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.homeRegister-btn:hover {
+  color: rgb(252, 30, 141);
+  background-color: rgb(22, 22, 22);
+  border-color: rgb(252, 30, 141);
+}
+
+.homeRegister-btn:hover:before {
+  opacity: 1;
+}
+
+  
+.home-container-r2 {
+    position: relative;
+    background-color: rgb(202, 202, 202);
+    padding: 10px;
+    height: 1300px;
+    min-width: fit-content;
+    min-height: fit-content;
+    z-index: 3;
+}
+
+.home-content-r2-c1 {
+    position: relative;
+    float: left;
+    width: fit-content;
+    height: fit-content;
+    margin: 50px;
+    margin-top: 100px;
+}
+
+.r2c1-text-panel {
+    position: relative;
+    width: 400px;
+    height: 350px;
+    padding: 10px;
+    margin-left: -40px;
+    margin-top: -200px;
+    background-color: rgb(21, 107, 133);
+    color: rgb(248, 248, 248);
+}
+
+.r2c1-other-panel {
+    position: absolute;
+    top: -50px;
+    right: -40px;
+    height: 450px;
+    width: 400px;
+    background-color: rgb(158, 42, 152);
+}
+
+.r2c1-text {
+    position: absolute;
+    bottom: 5px;
+    max-width: 95vw;
+}
+
+.home-content-c1-img {
+    position: relative;
+    z-index: 1;
+}
+
+.home-content-r2-c2 {
+    position: relative;
+    float: right;
+    width: fit-content;
+    height: fit-content;
+    margin: 50px;
+}
+
+.r2c2-text-panel {
+    position: relative;
+    color: white;
+    width: 400px;
+    height: 300px;
+    padding: 10px;
+    margin-left: -40px;
+    background-color: rgb(41, 86, 172);
+}
+
+.r2c2-other-panel {
+    position: absolute;
+    top: 50px;
+    right: -30px;
+    height: 450px;
+    width: 400px;
+    background-color: rgb(177, 28, 140);
+}
+
+.home-content-c2-img {
+    position: relative;
+    width: 612px;
+    bottom: 1px;
+    margin-top: -200px;
+}
+
+@media screen and (max-width: 1470px) {
+    .home-container-r2 {
+        height: 2400px;
+    }
+
+    .home-content-r2-c1 {
+        float: right;
+        margin-right: calc(50% - 300px);
+    }
+
+    .home-content-r2-c2 {
+        float: right;
+        margin-right: calc(50% - 300px);
+        margin-left: 0;
+    }
+}
+
+
+.home-container-r3 {
+    position: relative;
+    background-color: rgb(36, 36, 36);
+    padding: 10px;
+    height: 400px;
+    min-width: 682px;
+    min-height: fit-content;
+    z-index: 3;
 }
