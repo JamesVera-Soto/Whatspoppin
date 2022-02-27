@@ -28,7 +28,7 @@ function DisplayMap(props) {
         setCenter({
             lat: props.searched.lat,
             lng: props.searched.lng,
-            zoom: props.searched.lat === 0 ? 1 : 10
+            zoom: props.searched.lat === 0 ? 2 : 10
         })
     }, [props.searched])
 

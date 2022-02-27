@@ -17,6 +17,7 @@ import AuthApi from './AuthApi';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './components/NotFound';
 import ViewEvent from './components/ViewEvent';
+import ViewOrganizer from './components/ViewOrganizer';
 
 
 function App() {
@@ -59,6 +60,8 @@ function App() {
           <Route path="/account/create-event" element={<PrivateRoute><AccountCreateEvent /></PrivateRoute>} />
 
           <Route path="/event/:id" element={<ViewEvent />} />
+
+          <Route path="/organizer/:id" element={<ViewOrganizer />} />
 
           <Route path="*" element={<NotFound />} />
 

@@ -31,9 +31,9 @@ function Navbar(props) {
     }
 
     const SignOut = async () => {
-        await axios.post('http://localhost:3001/signout')
         authUser.setAuth(false)
         authUser.setCurrentUser(null)
+        await axios.post('http://localhost:3001/signout')
     }
 
     console.log("navbar: ", authUser)

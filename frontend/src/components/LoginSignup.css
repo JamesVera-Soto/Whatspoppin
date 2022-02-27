@@ -34,6 +34,8 @@
     overflow: hidden;
   
     background: transparent;
+
+    margin-top: 60px;
   }
 
   .login100-form {

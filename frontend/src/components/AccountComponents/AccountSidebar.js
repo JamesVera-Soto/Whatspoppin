@@ -1,14 +1,16 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import AuthApi from '../../AuthApi';
+import axios from 'axios';
 
 function AccountSidebar() {
 
     const authUser = useContext(AuthApi)
 
-    const SignOut = () => {
+    const SignOut = async () => {
         authUser.setAuth(false)
         authUser.setCurrentUser(null)
+        await axios.post('http://localhost:3001/signout')
     }
 
   return <div className='account-side'>

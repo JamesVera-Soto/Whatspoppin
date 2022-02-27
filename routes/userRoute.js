@@ -114,5 +114,17 @@ router.route('/login').post(async (req, res) => {
     })
 })
 
+router.route('/organizer/:id').get((req,res) => {
+    console.log("params for event", req.params)
+    User.findOne({username: req.params.id}, (err, data) => {
+        if(!err) {
+            res.send(data)
+        } else {
+            console.log(err)
+            res.send({name: "Could not find", success: false})
+        }
+    })
+});
+
 
 module.exports = router;
