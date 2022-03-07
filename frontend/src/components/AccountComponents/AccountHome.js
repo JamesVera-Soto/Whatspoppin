@@ -6,6 +6,8 @@ import AuthApi from '../../AuthApi';
 
 function AccountHome() {
 
+  document.title = "Account - Whats Poppin"
+
   const authUser = useContext(AuthApi)
 
   return <div>

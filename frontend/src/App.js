@@ -10,8 +10,8 @@ import Login from './components/Login';
 import Events from './components/Events';
 import AccountHome from './components/AccountComponents/AccountHome';
 import MyEvents from './components/AccountComponents/MyEvents';
-import Friends from './components/AccountComponents/Friends';
-import Subscriptions from './components/AccountComponents/Subscriptions';
+import Followers from './components/AccountComponents/Followers';
+import Following from './components/AccountComponents/Following';
 import Notifications from './components/AccountComponents/Notifications';
 import AuthApi from './AuthApi';
 import PrivateRoute from './PrivateRoute';
@@ -54,8 +54,8 @@ function App() {
 
           <Route path="/account" element={<PrivateRoute><AccountHome /></PrivateRoute>} />
           <Route path="/account/my-events" element={<PrivateRoute><MyEvents /></PrivateRoute>} />
-          <Route path="/account/friends" element={<PrivateRoute><Friends /></PrivateRoute>} />
-          <Route path="/account/subscriptions" element={<PrivateRoute><Subscriptions /></PrivateRoute>} />
+          <Route path="/account/followers" element={<PrivateRoute><Followers /></PrivateRoute>} />
+          <Route path="/account/following" element={<PrivateRoute><Following /></PrivateRoute>} />
           <Route path="/account/notifications" element={<PrivateRoute><Notifications /></PrivateRoute>} />
           <Route path="/account/create-event" element={<PrivateRoute><AccountCreateEvent /></PrivateRoute>} />
 

@@ -9,6 +9,8 @@ const libraries = ['places'];
 
 function Events() {
 
+  document.title = "Events - Whats Poppin"
+
   const {isLoaded, loadError} = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -42,9 +44,6 @@ function Events() {
   if (!isLoaded) return "Loading..";
 
   return (
-    <div>
-      <h4 className='pageTitle events-title'>Events</h4>
-      
       <div className='events-parent'>
         <div className='position-fix'>
           <div className='events-child-map'>
@@ -58,8 +57,7 @@ function Events() {
           </div>
         </div>
       </div>
-
-    </div>);
+  )
 }
 
 export default Events;

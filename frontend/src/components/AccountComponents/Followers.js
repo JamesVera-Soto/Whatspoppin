@@ -1,13 +1,16 @@
 import React from 'react';
 import AccountSidebar from './AccountSidebar';
 
-function Subscriptions() {
+function Followers() {
+
+  document.title = "Followers - Whats Poppin"
+
   return <div>
     <div className='account-container'>
       <AccountSidebar />
 
       <div className='account-content'>
-        <p>Subscriptions go here</p>
+        <p>followers go here</p>
       </div>
 
 
@@ -15,4 +18,4 @@ function Subscriptions() {
   </div>;
 }
 
-export default Subscriptions;
+export default Followers

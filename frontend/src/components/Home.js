@@ -5,6 +5,8 @@ import Carousel from 'react-bootstrap/Carousel'
 
 function Home() {
 
+  document.title = "Whats Poppin"
+
   const navigate = useNavigate()
 
   const folder = '/pageImages/'

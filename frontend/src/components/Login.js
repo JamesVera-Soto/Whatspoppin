@@ -6,6 +6,8 @@ import AuthApi from '../AuthApi';
 
 function Login() {
 
+	document.title = "Log In - Whats Poppin"
+
 	const authUser = useContext(AuthApi)
 
 	const navigate = useNavigate();

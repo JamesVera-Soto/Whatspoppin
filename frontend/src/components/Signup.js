@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 function Signup() {
 
+  document.title = "Sign Up - Whats Poppin"
+
   const navigate = useNavigate();
 
   const blankInput = {

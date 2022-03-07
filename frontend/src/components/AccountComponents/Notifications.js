@@ -2,6 +2,9 @@ import React from 'react';
 import AccountSidebar from './AccountSidebar';
 
 function Notifications() {
+
+  document.title = "Notifications - Whats Poppin"
+
   return <div>
     <div className='account-container'>
       <AccountSidebar />

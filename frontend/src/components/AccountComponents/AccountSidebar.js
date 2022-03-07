@@ -24,9 +24,9 @@ function AccountSidebar() {
 
             <li className='account-side-item'><Link className='nav-txt' to="/account/my-events">My Events</Link></li>
 
-            <li className='account-side-item'><Link className='nav-txt' to="/account/friends">Friends</Link></li>
+            <li className='account-side-item'><Link className='nav-txt' to="/account/followers">Followers</Link></li>
 
-            <li className='account-side-item'><Link className='nav-txt' to="/account/subscriptions">Subscriptions</Link></li>
+            <li className='account-side-item'><Link className='nav-txt' to="/account/following">Following</Link></li>
 
             <li className='account-side-item'><Link className='nav-txt' to="/account/notifications">Notifications</Link></li>
 

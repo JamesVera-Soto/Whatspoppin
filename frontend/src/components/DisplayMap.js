@@ -16,7 +16,7 @@ function DisplayMap(props) {
     
     const mapContainerStyle = {
         width: '60vw',
-        height: 'calc(100vh - 108px)',
+        height: 'calc(100vh - 70px)',
     }
     const [center, setCenter] = useState({
         lat: props.searched.lat,

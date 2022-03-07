@@ -1,13 +1,16 @@
 import React from 'react';
 import AccountSidebar from './AccountSidebar';
 
-function Friends() {
+function Following() {
+
+  document.title = "Following - Whats Poppin"
+
   return <div>
     <div className='account-container'>
       <AccountSidebar />
 
       <div className='account-content'>
-        <p>friends go here</p>
+        <p>Following go here</p>
       </div>
 
 
@@ -15,5 +18,4 @@ function Friends() {
   </div>;
 }
 
-export default Friends
-;
+export default Following

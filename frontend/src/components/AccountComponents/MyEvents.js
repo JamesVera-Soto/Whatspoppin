@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom'
 
 function MyEvents() {
 
+  document.title = "My Events - Whats Poppin"
+
   const navigate = useNavigate()
   const [events, setEvents] = useState([]);
   const [updated, setUpdated] = useState(false)

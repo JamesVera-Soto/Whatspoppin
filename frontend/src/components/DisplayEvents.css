@@ -9,17 +9,18 @@
 }
 
 .address {
-    color: gray;
+    color: rgb(160, 160, 160);
     font-size: 10px;
 }
 
 .event {
+    color: whitesmoke;
     padding: 5px;
-    background-color: rgb(168, 168, 168);
+    background-color: rgb(49, 49, 49);
     
 }
 .event:hover {
-    background-color: rgb(155, 190, 202);
+    background-color: rgb(97, 120, 128);
 }
 .event::after {
     content: '';
@@ -49,7 +50,7 @@ ul.no-bullets {
 }
 
 .DEtitle-txt {
-    color: black;
+    color: whitesmoke;
 }
 .DEtitle-txt:hover {
     color: rgb(252, 30, 141);    
