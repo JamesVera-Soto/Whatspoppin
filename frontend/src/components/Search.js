@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Search.css'
 
 import usePlacesAutocomplete, {
@@ -19,18 +19,14 @@ import "@reach/combobox/styles.css";
 
 function Search(props) {
     
+
     const {
         ready, 
         value, 
         suggestions: {status, data}, 
         setValue, 
         clearSuggestions,
-    } = usePlacesAutocomplete({
-        requestOptions: {
-            location: {lat: () => 43.653225, lng: () => -79.383186},
-            radius: 200 * 1000,
-        },
-    });
+    } = usePlacesAutocomplete();
 
 
 

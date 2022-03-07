@@ -11,8 +11,6 @@ import {
 
 function DisplayMap(props) {
 
-    console.log(props)
-
     
     const mapContainerStyle = {
         width: '60vw',
@@ -47,28 +45,6 @@ function DisplayMap(props) {
         mapRef.current = map;
     }, []);
 
-    function Locate(props){
-        return(
-            <button 
-                className='locate'
-                onClick={() => {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            setCenter({
-                                lat: position.coords.latitude,
-                                lng: position.coords.longitude,
-                                zoom: 10,
-                            });
-                        },
-                        () => null
-                    );
-                }}
-            >
-                <i className="fas fa-compass fa-2x"></i>
-            </button>
-        );
-    }
-
     useEffect(() => {
         props.events.map((event) => {
             if(event.name === "") return;
@@ -89,9 +65,6 @@ function DisplayMap(props) {
 
     return (
         <div className='map-container'>
-            <span title='Find your location'>
-                <Locate setSearched={props.setSearched} />
-            </span>
             <GoogleMap 
             onDragEnd={handleCenterChanged}
             mapContainerStyle={mapContainerStyle} 

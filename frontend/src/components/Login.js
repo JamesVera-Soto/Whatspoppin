@@ -61,37 +61,39 @@ function Login() {
 	}
 
 
-  return <div className='container-login100'>
-    <div className="wrap-login100 p-t-30 p-b-50">
-				<span className="login100-form-title p-b-41">
-					Login
-				</span>
-				<form onSubmit={handleClick} className="login100-form validate-form p-b-33 p-t-5">
+  return <div>
+	<div className='container-login100'>
+		<div className="wrap-login100 p-t-30 p-b-50">
+					<span className="login100-form-title p-b-41">
+						Login
+					</span>
+					<form onSubmit={handleClick} className="login100-form validate-form p-b-33 p-t-5">
 
-					<div className="wrap-input100 validate-input" data-validate = "Enter username">
-						<input onChange={handleChange} className="input100" type="text" name="usernameEmail" placeholder="User name / email" autoComplete='off' value={loginInput.usernameEmail}></input>
-						<span className="focus-input100" data-placeholder="&#xf007;"></span>
-					</div>
+						<div className="wrap-input100 validate-input" data-validate = "Enter username">
+							<input onChange={handleChange} className="input100" type="text" name="usernameEmail" placeholder="User name / email" autoComplete='off' value={loginInput.usernameEmail}></input>
+							<span className="focus-input100" data-placeholder="&#xf007;"></span>
+						</div>
 
-					<div className="wrap-input100 validate-input" data-validate="Enter password">
-						<input onChange={handleChange} className="input100" type="password" name="password" placeholder="Password" value={loginInput.password} />
-						<span className="focus-input100" data-placeholder="&#xf023;"></span>
-					</div>
+						<div className="wrap-input100 validate-input" data-validate="Enter password">
+							<input onChange={handleChange} className="input100" type="password" name="password" placeholder="Password" value={loginInput.password} />
+							<span className="focus-input100" data-placeholder="&#xf023;"></span>
+						</div>
 
-					{incorrectField.status ? 
-					<div>
-						<p className='errorHint'>{incorrectField.hint}</p>
-					</div> : null}
+						{incorrectField.status ? 
+						<div>
+							<p className='errorHint'>{incorrectField.hint}</p>
+						</div> : null}
 
-					<div className="container-login100-form-btn m-t-32">
-						<button className="login100-form-btn">
-							Login
-						</button>
-					</div>
+						<div className="container-login100-form-btn m-t-32">
+							<button className="login100-form-btn">
+								Login
+							</button>
+						</div>
 
-				</form>
-			</div>
-  </div>;
+					</form>
+				</div>
+		</div>;
+	</div>
 }
 
 export default Login;

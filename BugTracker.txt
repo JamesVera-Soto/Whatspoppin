@@ -1,7 +1,7 @@
 Bugs to fix:
 -unique file names
--map suggestions based on user location
 -add organizer, private, and update delete to events
 -create event preview page
 -userRoute change res.send to protect password
 -signout user when cookie expires
+-add follow functionality

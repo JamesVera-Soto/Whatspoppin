@@ -15,6 +15,7 @@ function Events() {
   });
 
   const [searchValues, setSearchValues] = useState({address: "", lat: 0, lng: 0, zoom: 1});
+  const [update, setUpdate] = useState(false)
 
   const [events, setEvents] = useState([{
       name: "",
@@ -27,13 +28,25 @@ function Events() {
       endDatetime: "2022-01-26T06:00:00.000Z",
   }]);
 
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+        setSearchValues({
+            address: "",
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            zoom: 10,
+        });
+    },
+    () => null
+  );
+
   useEffect(() => {
     fetch('http://localhost:3001/events').then(res => {
       if(res.ok) {
         return res.json();
       }
     }).then(jsonRes => setEvents(jsonRes));
-  }, [searchValues]);
+  }, [update]);
 
   console.log(events);
 

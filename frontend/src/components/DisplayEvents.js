@@ -6,13 +6,11 @@ import { Link } from 'react-router-dom';
 
 function DisplayEvents(props) {
 
-    console.log(props.events);
     
     return props.events.length === 0 ? <div className='displayEvents'>No events found</div> :
     (
         <ul className='displayEvents'>
         {props.events.map((event, i) => {
-            console.log(event.imgs)
 
             var multipleImages = true
             if(event.imgs.length === 0) event.imgs = ['placeholder-image.png']
@@ -42,6 +40,7 @@ function DisplayEvents(props) {
                     <p className='address'>{event.address}</p>
                     <p>{event.description}</p>
                     <p>{format(new Date(event.startDatetime), 'MMMM dd, yyyy, p')} - {format(new Date(event.endDatetime), 'MMMM dd, yyyy, p')}</p>
+                    <p><Link to={"/organizer/" + event.organizer}>{event.organizer}</Link></p>
                 </li>
             )}
         )}
