@@ -31,8 +31,6 @@ function DisplayEvents(props) {
                                 alt="First slide"
                                 />
                                 <Carousel.Caption>
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                                 </Carousel.Caption>
                             </Carousel.Item>)
                         })}
@@ -42,6 +40,7 @@ function DisplayEvents(props) {
                     <p className='address'>{event.address}</p>
                     <p>{event.description}</p>
                     <p>{format(new Date(event.startDatetime), 'MMMM dd, yyyy, p')} - {format(new Date(event.endDatetime), 'MMMM dd, yyyy, p')}</p>
+                    <p>Organizer: <Link to={"/organizer/" + event.organizer} >{event.organizer}</Link></p>
                 </li>
             )}
         )}
