@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom'
+import { Link, useParams} from 'react-router-dom'
 import axios from 'axios';
 
 function ViewEvent() {
@@ -41,7 +41,7 @@ function ViewEvent() {
     <p>{event.address}</p>
     <p>{event.startDatetime}</p>
     <p>{event.endDatetime}</p>
-    <p>{event.organizer}</p>
+    <p>Organizer: <Link to={"/organizer/" + event.organizer}>{event.organizer}</Link></p>
     <iframe name="gMap" src={`https://www.google.com/maps/embed/v1/place?q=${event.lat},${ event.lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`} width="400px" height="400px"></iframe>
   </div>
 }

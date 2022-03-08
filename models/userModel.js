@@ -1,5 +1,26 @@
 const mongoose = require('mongoose');
 
+const notificationsSchema = new mongoose.Schema({
+    title: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    organizer: {
+        type: String
+    },
+    icon: {
+        type: String
+    },
+    time: {
+        type: Date
+    },
+    new: {
+        type: Boolean
+    }
+})
+
 const usersSchema = new mongoose.Schema ({
     username: {
         type: String,
@@ -25,6 +46,15 @@ const usersSchema = new mongoose.Schema ({
     userEvents: {
         type: [String],
         required: true
+    },
+    followers: {
+        type: [String]
+    },
+    following: {
+        type: [String]
+    },
+    notifications: {
+        type: [notificationsSchema]
     }
 })
 

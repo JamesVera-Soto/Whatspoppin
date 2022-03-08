@@ -21,6 +21,7 @@ function AccountHome() {
         <p>Change Password:</p>
         <p>New password</p>
         <p>Confirm password</p>
+        <p>Delete Account</p>
       </div>
 
 

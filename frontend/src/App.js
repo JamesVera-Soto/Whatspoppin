@@ -24,10 +24,11 @@ function App() {
 
   axios.defaults.withCredentials = true
 
-  const [auth, setAuth] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [auth, setAuth] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(() => {
+    console.log("attempting to retrive user info...")
     axios.get("http://localhost:3001/login").then(response => {
       console.log(response)
       setAuth(response.data.loggedIn)

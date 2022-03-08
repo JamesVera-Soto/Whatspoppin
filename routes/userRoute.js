@@ -126,5 +126,17 @@ router.route('/organizer/:id').get((req,res) => {
     })
 });
 
+router.route('/api/updateUser').post(async (req, res) => {
+    console.log("updating user... req: ", req.body)
+
+    try {
+    const mes = await User.findOneAndUpdate({[req.body.findByField]: req.body.findByValue}, {$push: {[req.body.field]: req.body.value}})
+    res.send(mes)
+    }
+    catch (e){
+        console.log(e)
+    }
+})
+
 
 module.exports = router;
