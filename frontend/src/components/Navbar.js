@@ -1,11 +1,14 @@
 import './Navbar.css';
 import React, { useContext, useRef, useLayoutEffect, useState } from 'react';
 import {Link, Navigate} from 'react-router-dom';
-import AuthApi from '../AuthApi';
+import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
 import axios from 'axios';
 
 
 function Navbar(props) {
+
+    const authUser = useAuthApi()
+    const authUserUpdate = useAuthApiUpdate()
 
     function useWindowSize() {
       const [size, setSize] = useState([0, 0]);
@@ -21,7 +24,6 @@ function Navbar(props) {
     }
 
     const [width, height] = useWindowSize()
-    const authUser = useContext(AuthApi)
 
     const toggleButtonRef = useRef()
 
@@ -31,9 +33,7 @@ function Navbar(props) {
     }
 
     const SignOut = async () => {
-        authUser.setAuth(false)
-        authUser.setCurrentUser(null)
-        await axios.post('http://localhost:3001/signout')
+        await axios.post('http://localhost:3001/signout').then(authUserUpdate())
     }
 
     console.log("navbar: ", authUser)

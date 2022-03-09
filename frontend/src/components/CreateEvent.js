@@ -3,7 +3,7 @@ import Search from './Search';
 import './CreateEvent.css';
 import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import axios from 'axios';
-import AuthApi from '../AuthApi';
+import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
 import {useLoadScript} from "@react-google-maps/api";
 import { useNavigate } from 'react-router-dom'
 
@@ -18,7 +18,7 @@ function CreateEvent() {
         libraries,
     });
 
-    const authUser = useContext(AuthApi)
+    const authUser = useAuthApi()
 
     const blankEvent = {
         id: 1,

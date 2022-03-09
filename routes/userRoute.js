@@ -65,9 +65,10 @@ router.route('/signup').post(async (req, res) => {
     }
 });
 
-router.route('/login').get((req, res) => {
+router.route('/login').get(async (req, res) => {
     if(req.session.user) {
-        res.send({loggedIn: true, user: req.session.user})
+        const user = await User.findById(req.session.user._id)
+        res.send({loggedIn: true, user: user})
     } else {
         res.send({loggedIn: false})
     }
@@ -129,13 +130,19 @@ router.route('/organizer/:id').get((req,res) => {
 router.route('/api/updateUser').post(async (req, res) => {
     console.log("updating user... req: ", req.body)
 
-    try {
-    const mes = await User.findOneAndUpdate({[req.body.findByField]: req.body.findByValue}, {$push: {[req.body.field]: req.body.value}})
-    res.send(mes)
-    }
-    catch (e){
-        console.log(e)
-    }
+    User.findOneAndUpdate(
+        {[req.body.findByField]: req.body.findByValue}, 
+        {$push: {[req.body.field]: req.body.value}}, 
+        {new: true}, 
+        (err, doc) => {
+            if(err) {
+                console.log(err)
+            }
+            else {
+                res.send(doc)
+            }
+    })
+    
 })
 
 

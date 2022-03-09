@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
-import AuthApi from '../../AuthApi';
+import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
 import axios from 'axios';
 
 function AccountSidebar() {
 
-    const authUser = useContext(AuthApi)
+    const authUser = useAuthApi()
 
     const SignOut = async () => {
         authUser.setAuth(false)

@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import AuthApi from '../AuthApi';
+import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
 import axios from 'axios';
 
 function ViewOrganizer() {
 
-  const authUser = useContext(AuthApi)
+  const authUser = useAuthApi()
+  const authUserUpdate = useAuthApiUpdate()
 
   const { id } = useParams()
   const [organizer, setOrganizer] = useState({
@@ -50,6 +51,7 @@ function ViewOrganizer() {
       ])
       .then(axios.spread((res1, res2) => {
         console.log("res1: ", res1, "res2: ", res2)
+        authUserUpdate()
       }))
 
       

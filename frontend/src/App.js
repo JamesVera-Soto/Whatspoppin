@@ -13,8 +13,9 @@ import MyEvents from './components/AccountComponents/MyEvents';
 import Followers from './components/AccountComponents/Followers';
 import Following from './components/AccountComponents/Following';
 import Notifications from './components/AccountComponents/Notifications';
-import AuthApi from './AuthApi';
+import {AuthApiProvider} from './AuthApi';
 import PrivateRoute from './PrivateRoute';
+import LoggedInRoute from './LoggedInRoute';
 import NotFound from './components/NotFound';
 import ViewEvent from './components/ViewEvent';
 import ViewOrganizer from './components/ViewOrganizer';
@@ -22,24 +23,10 @@ import ViewOrganizer from './components/ViewOrganizer';
 
 function App() {
 
-  axios.defaults.withCredentials = true
-
-  const [auth, setAuth] = useState(false)
-  const [currentUser, setCurrentUser] = useState(null)
-
-  useEffect(() => {
-    console.log("attempting to retrive user info...")
-    axios.get("http://localhost:3001/login").then(response => {
-      console.log(response)
-      setAuth(response.data.loggedIn)
-      if(response.data.loggedIn) setCurrentUser(response.data.user)
-    })
-  }, [])
-
   
 
   return  (
-    <AuthApi.Provider value={{auth, setAuth, currentUser, setCurrentUser}}>
+    <AuthApiProvider>
       <Router>
         <NavBar />
 
@@ -49,9 +36,9 @@ function App() {
 
           <Route path="/events" element={<Events />} />
 
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<LoggedInRoute><Signup /></LoggedInRoute>} />
 
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoggedInRoute><Login /></LoggedInRoute>} />
 
           <Route path="/account" element={<PrivateRoute><AccountHome /></PrivateRoute>} />
           <Route path="/account/my-events" element={<PrivateRoute><MyEvents /></PrivateRoute>} />
@@ -68,7 +55,7 @@ function App() {
 
         </Routes>
       </Router>
-    </AuthApi.Provider>
+    </AuthApiProvider>
   )
 }
 

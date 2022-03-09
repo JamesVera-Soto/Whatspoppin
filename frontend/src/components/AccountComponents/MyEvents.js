@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AccountSidebar from './AccountSidebar';
-import AuthApi from '../../AuthApi';
+import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
 import EventItem from './EventItem';
 import './EventItem.css'
 import axios from 'axios'
@@ -14,7 +14,7 @@ function MyEvents() {
   const [events, setEvents] = useState([]);
   const [updated, setUpdated] = useState(false)
 
-  const authUser = useContext(AuthApi)
+  const authUser = useAuthApi()
 
   console.log("username",authUser.currentUser)
 

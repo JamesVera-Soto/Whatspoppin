@@ -2,13 +2,14 @@ import React, {useState, useContext} from 'react';
 import './LoginSignup.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import AuthApi from '../AuthApi';
+import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
 
 function Login() {
 
 	document.title = "Log In - Whats Poppin"
 
-	const authUser = useContext(AuthApi)
+	const authUser = useAuthApi()
+	const authUserUpdate = useAuthApiUpdate()
 
 	const navigate = useNavigate();
 
@@ -47,8 +48,7 @@ function Login() {
 		console.log(mes)
 
 		if(mes.data.success){
-			authUser.setAuth(true)
-			authUser.setCurrentUser(mes.data.user)
+			await authUserUpdate()
 
 			
 			navigate('/account');

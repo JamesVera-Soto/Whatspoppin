@@ -2,13 +2,15 @@ import React, {useContext} from 'react';
 import './AccountHome.css'
 import { format } from 'date-fns'
 import AccountSidebar from './AccountSidebar';
-import AuthApi from '../../AuthApi';
+import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
+    
 
 function AccountHome() {
 
   document.title = "Account - Whats Poppin"
 
-  const authUser = useContext(AuthApi)
+  const authUser = useAuthApi()
+  const authUserUpdate = useAuthApiUpdate()
 
   return <div>
     <div className='account-container'>
