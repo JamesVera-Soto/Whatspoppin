@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
 import axios from 'axios';
+import DisplayEvents from './DisplayEvents';
+import './ViewOrganizer.css'
 
 function ViewOrganizer() {
 
@@ -13,6 +15,17 @@ function ViewOrganizer() {
     username: "Loading...",
     success: false
   })
+
+  const [events, setEvents] = useState([{
+    name: "",
+    address: "",
+    lat: 0,
+    lng: 0,
+    description: "",
+    imgs: [],
+    startDatetime: "2022-01-26T06:00:00.000Z",
+    endDatetime: "2022-01-26T06:00:00.000Z",
+  }]);
 
   const currentlyFollowing = authUser.currentUser !== null && authUser.currentUser.following.includes(id)
 
@@ -29,7 +42,14 @@ function ViewOrganizer() {
         setOrganizer({name: "Sorry something went wrong"})
       }
     }).then(jsonRes => setOrganizer(jsonRes))
+
+    fetch('http://localhost:3001/events').then(res => {
+      if(res.ok) {
+        return res.json()
+      }
+    }).then(jsonRes => setEvents(jsonRes));
   }, []);
+
 
   function handleFollow() {
     if(!currentlyFollowing){
@@ -73,12 +93,17 @@ function ViewOrganizer() {
   </div>;
 
   else return <div>
-    <h4 className='pageTitle'>{organizer.username}</h4>
-    <button onClick={authUser.auth ? handleFollow : () => {console.log("must be logged in")}}>{currentlyFollowing ? "Unfollow" : "Follow"}</button>
-    <p>{organizer.email}</p>
-    {organizer.userEvents.map(event => {
-      return <p>{event}</p>
-    })}
+    <div className='organizerPane'>
+      <h4>{organizer.username}</h4>
+      <img src='/person-placeholder.png' className='organizer-avatar' alt=''></img>
+      <p>{organizer.email}</p>
+      <button onClick={authUser.auth ? handleFollow : () => {console.log("must be logged in")}}>{currentlyFollowing ? "Unfollow" : "Follow"}</button>
+    </div>
+    
+    <div className='eventsPane'>
+      <DisplayEvents events={events.filter(event => {return event.organizer === id})} />
+    </div>
+    
   </div>
 }
 
