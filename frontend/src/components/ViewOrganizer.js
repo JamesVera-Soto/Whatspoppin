@@ -58,14 +58,14 @@ function ViewOrganizer() {
           findByField: "_id", 
           findByValue: authUser.currentUser._id, 
           field: "following", 
-          action: "push",
+          action: '$push',
           value: id
         }),
         axios.post('http://localhost:3001/api/updateUser', {
           findByField: "username", 
           findByValue: id, 
           field: "followers", 
-          action: "push",
+          action: '$push',
           value: authUser.currentUser.username
         })
       ])

@@ -19,6 +19,7 @@ import LoggedInRoute from './LoggedInRoute';
 import NotFound from './components/NotFound';
 import ViewEvent from './components/ViewEvent';
 import ViewOrganizer from './components/ViewOrganizer';
+import EditEvent from './components/AccountComponents/EditEvent';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/account/following" element={<PrivateRoute><Following /></PrivateRoute>} />
           <Route path="/account/notifications" element={<PrivateRoute><Notifications /></PrivateRoute>} />
           <Route path="/account/create-event" element={<PrivateRoute><AccountCreateEvent /></PrivateRoute>} />
+          <Route path="/account/my-events/:id" element={<PrivateRoute><EditEvent /></PrivateRoute>} />
 
           <Route path="/event/:id" element={<ViewEvent />} />
 

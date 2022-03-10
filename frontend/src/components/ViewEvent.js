@@ -10,10 +10,6 @@ function ViewEvent() {
     success: false
   })
 
-  var url = new URL('http://localhost:3000/event')
-  var params = {id: id}
-  url.search = new URLSearchParams(params).toString()
-
   useEffect(() => {
     fetch('http://localhost:3001/event/' + id).then(res => {
       if(res.ok) {

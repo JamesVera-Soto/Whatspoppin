@@ -6,11 +6,10 @@ import axios from 'axios';
 function AccountSidebar() {
 
     const authUser = useAuthApi()
+    const authUserUpdate = useAuthApiUpdate()
 
     const SignOut = async () => {
-        authUser.setAuth(false)
-        authUser.setCurrentUser(null)
-        await axios.post('http://localhost:3001/signout')
+        await axios.post('http://localhost:3001/signout').then(authUserUpdate())
     }
 
   return <div className='account-side'>

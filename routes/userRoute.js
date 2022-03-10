@@ -3,6 +3,7 @@ const session = require('express-session')
 const MongoDBSession = require('connect-mongodb-session')(session)
 const router = express.Router();
 const User = require('../models/userModel');
+const Event = require('../models/eventModel')
 
 const store = new MongoDBSession({
     uri: process.env.MONGODB_EVENTSDB,
@@ -15,6 +16,7 @@ const jwt = require('jsonwebtoken')
 
 const multer = require('multer');
 const { JsonWebTokenError } = require('jsonwebtoken');
+const { events } = require('../models/userModel');
 
 function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
@@ -130,19 +132,84 @@ router.route('/organizer/:id').get((req,res) => {
 router.route('/api/updateUser').post(async (req, res) => {
     console.log("updating user... req: ", req.body)
 
+    var {findByField, findByValue, field, action, value} = req.body
+    if(field === "password") value = await bcrypt.hash(value, 10)
+
     User.findOneAndUpdate(
-        {[req.body.findByField]: req.body.findByValue}, 
-        {$push: {[req.body.field]: req.body.value}}, 
+        {[findByField]: findByValue}, 
+        {[action]: {[field]: value}}, 
         {new: true}, 
         (err, doc) => {
             if(err) {
                 console.log(err)
             }
             else {
-                res.send(doc)
+                res.send("Updated successfully!")
             }
     })
     
+})
+
+router.route('/api/deleteAccount').post(async (req, res) => {
+    console.log("deleting user: ", req.body)
+
+    const user = await User.findById(req.body.id)
+
+    console.log(user)
+
+    const {followers, following, userEvents} = user
+
+    console.log(followers, following, userEvents)
+
+    // update those followers
+    followers.map(followerName => {
+        console.log("updating follower: ",followerName)
+        User.findOneAndUpdate(
+            {username: followerName}, 
+            {$pull: {following: user.username}},
+            (err, doc) => {
+                if(err) {
+                    console.log(err)
+                }
+            }
+        )
+    })
+
+    // update those following
+    following.map(followName => {
+        console.log("updating follow: ",followName)
+        User.findOneAndUpdate(
+            {username: followName},
+            {$pull: {followers: user.username}},
+            (err, doc) => {
+                if(err) {
+                    console.log(err)
+                }
+            }
+        )
+    })
+
+    // delete events
+    userEvents.map(event => {
+        console.log("deleting event: ",event)
+        Event.findByIdAndDelete(event, (err, doc) => {
+            if(err){
+                console.log(err)
+            }
+        })
+    })
+
+    // delete user
+    User.findByIdAndDelete(req.body.id, (err, doc) => {
+        if(err) {
+            console.log(err)
+        }
+    })
+
+    req.session.destroy((err) => {
+        if(err) throw err;
+        res.send('success')
+    })
 })
 
 

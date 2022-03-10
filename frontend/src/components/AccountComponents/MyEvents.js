@@ -44,6 +44,10 @@ function MyEvents() {
     navigate('/event/' + id)
   }
 
+  function onEdit(id) {
+    navigate('/account/my-events/' + id)
+  }
+
   return <div>
     <div className='account-container'>
       <AccountSidebar />
@@ -52,7 +56,7 @@ function MyEvents() {
         <p>My Events</p>
         {events.map(event => {
           return(
-            <EventItem event={event} onDelete={deleteEvent} onView={viewEvent} />
+            <EventItem event={event} onDelete={deleteEvent} onView={viewEvent} onEdit={onEdit} />
           )
         })}
       </div>
