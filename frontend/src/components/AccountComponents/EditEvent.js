@@ -34,7 +34,7 @@ function EditEvent() {
         startDatetime: "",
         endDatetime: ""
     })
-    const [searchValues, setSearchValues] = useState()
+    const [searchValues, setSearchValues] = useState({address: "", lat: 0, lng: 0, zoom: 1})
     const [imgActive, setImgActive] = useState()
 
     useEffect(() => {
@@ -51,7 +51,14 @@ function EditEvent() {
             setImgActive(actImg)
             setEvent(jsonRes)
             setChanges(jsonRes)
+            setChanges(prevInput => {
+                return {
+                    ...prevInput,
+                    'addedImgs': []
+                }
+            })
             setSearchValues({
+                address: jsonRes.address,
                 lat: jsonRes.lat,
                 lng: jsonRes.lng
             })
@@ -61,7 +68,7 @@ function EditEvent() {
     function handleChange(e){
         let {name, value} = e.target;
 
-        if(name === "imgs") {
+        if(name === "addedImgs") {
             value = e.target.files;
         }
 
@@ -105,6 +112,18 @@ function EditEvent() {
         var actImg = {}
         event.imgs.map(img => {actImg[img] = true})
         setImgActive(actImg)
+
+        setChanges(prevInput => {
+            return {
+                ...prevInput,
+                'addedImgs': []
+            }
+        })
+        setSearchValues({
+            address: event.address,
+            lat: event.lat,
+            lng: event.lng
+        })
     }
 
     async function handleClick(e){
@@ -112,16 +131,20 @@ function EditEvent() {
 
         const formData = new FormData();
 
+        formData.append("eventId", event._id)
         formData.append("name", changes.name);
         formData.append("description", changes.description);
-        formData.append("address", changes.address);
+        formData.append("address", searchValues.address);
         formData.append("lat", searchValues.lat);
         formData.append("lng", searchValues.lng);
         formData.append("startDatetime", changes.startDatetime);
         formData.append("endDatetime", changes.endDatetime);
-        formData.append("organizer", event.username);
+        formData.append("organizer", event.organizer);
         for(let img of changes.imgs){
             formData.append("imgs[]", img)
+        }
+        for(let img of changes.addedImgs){
+            formData.append("addedImgs[]", img)
         }
 
         const mes = await axios.post('http://localhost:3001/api/update-event', formData);
@@ -131,7 +154,7 @@ function EditEvent() {
         if(mes.status === 201){
             setIncorrectField({
                 status: true,
-                hint: "Event created successfully!",
+                hint: "Event updated successfully!",
                 success: true
             })
         }
@@ -193,15 +216,15 @@ function EditEvent() {
             </div> 
                 
 
-            <h5>Images</h5>
+            <h5>Images (click image to remove/undo)</h5>
             {event.imgs.map(img => {
-                return <img className={imgActive[img] ? null : 'img-deactivated'} onClick={() => removeAddImage(img)} src={'/eventImages/' + img} alt='image' width='300px' ></img>
+                return <img className={imgActive[img] ? 'img-activated' : 'img-deactivated'} onClick={() => removeAddImage(img)} src={'/eventImages/' + img} alt='image' ></img>
             })}
             <br></br>
 
             <div className="custom-file mb-3">
                 <label htmlFor="formFileMultiple" className="form-label">Select images to upload</label>
-                <input name='imgs' filename='imgs' onChange={handleChange} className="form-control" type="file" id="formFileMultiple" multiple />
+                <input name='addedImgs' filename='addedImgs' onChange={handleChange} className="form-control" type="file" id="formFileMultiple" multiple />
             </div>
 
             {incorrectField.status ? 

@@ -15,6 +15,12 @@
     color: rgb(252, 30, 141);
 }
 
+.img-activated {
+    max-width: 300px;
+    max-height: 300px;
+}
+
 .img-deactivated {
+    width: 280px;
     filter: opacity(40%);
 }

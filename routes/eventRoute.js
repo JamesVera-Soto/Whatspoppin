@@ -64,6 +64,39 @@ router.post('/create-event', upload.any('imgs'), (req, res) => {
     
 });
 
+router.post('/api/update-event', upload.any('addedImgs'), (req, res) => {
+
+    var imgArr = req.body.imgs
+    for(var img of req.files){
+        var filename = img.originalname.replace(/[^a-zA-Z0-9-_\.]/g, '_');
+        imgArr.push(filename)
+    }
+    
+    const updatedEvent = {
+        name: req.body.name,
+        description: req.body.description,
+        address: req.body.address,
+        lat: req.body.lat,
+        lng: req.body.lng,
+        startDatetime: req.body.startDatetime,
+        endDatetime: req.body.endDatetime,
+        imgs: imgArr,
+        organizer: req.body.organizer,
+    }
+
+    console.log(updatedEvent)
+
+    Event.findByIdAndUpdate(req.body.eventId, updatedEvent, async(err, event) => {
+        if(err) {
+            res.send({"success": false, "hint": err.message})
+        }
+        else{
+            res.status(201).send()
+        }
+    })
+
+});
+
 router.route('/events').get((req,res) => {
     Event.find().then(foundEvents => res.json(foundEvents));
 });
