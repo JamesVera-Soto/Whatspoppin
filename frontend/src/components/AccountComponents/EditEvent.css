@@ -1,3 +1,20 @@
 .edit-event-container {
+    position: relative;
     margin: 20px;
+}
+
+.update-edit-btn {
+    color: rgb(19, 19, 19);
+    right: 7px;
+    top: 7px;
+    z-index: 2;
+    background: none;
+    border: none;
+}
+.update-edit-btn:hover {
+    color: rgb(252, 30, 141);
+}
+
+.img-deactivated {
+    filter: opacity(40%);
 }

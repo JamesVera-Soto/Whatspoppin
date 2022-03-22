@@ -22,11 +22,11 @@ const eventsSchema = new mongoose.Schema ({
         required: true
     },
     startDatetime: {
-        type: String,
+        type: Date,
         required: true
     },
     endDatetime: {
-        type: String,
+        type: Date,
         required: true
     },
     imgs: {
