@@ -24,3 +24,14 @@
     z-index: 10;
     color: rgb(202, 25, 114);
 }
+@media (max-width:600px){
+    .locate {
+        position: absolute;
+        top: 1rem;
+        left: 85vw;
+        background: none;
+        border: none;
+        z-index: 10;
+        color: rgb(202, 25, 114);
+    }
+}

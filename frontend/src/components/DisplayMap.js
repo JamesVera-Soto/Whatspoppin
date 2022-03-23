@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import mapStyles from './mapStyles';
 import './DisplayMap.css';
+import useWindowSize from '../useWindowSize';
 
 import {
     GoogleMap,
@@ -11,13 +12,24 @@ import {
 
 function DisplayMap(props) {
 
+    const [height, width] = useWindowSize()
+
     console.log(props)
 
     
-    const mapContainerStyle = {
-        width: '60vw',
+    const [mapContainerStyle, setMapContainerStyle] = useState({
+        width: width < 600 ? '10vw' : '60vw',
         height: 'calc(100vh - 70px)',
-    }
+    })
+
+    useEffect(() => {
+        console.log(width)
+        setMapContainerStyle({
+            width: width < 600 ? '100vw' : '60vw',
+            height: 'calc(100vh - 70px)',
+        })
+    }, [width])
+
     const [center, setCenter] = useState({
         lat: props.searched.lat,
         lng: props.searched.lng,

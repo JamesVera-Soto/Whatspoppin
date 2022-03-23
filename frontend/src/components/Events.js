@@ -4,6 +4,7 @@ import DisplayMap from './DisplayMap';
 import DisplayEvents from './DisplayEvents';
 import './Events.css';
 import {useLoadScript} from "@react-google-maps/api";
+import useWindowSize from '../useWindowSize'
 
 const libraries = ['places'];
 
@@ -16,7 +17,10 @@ function Events() {
     libraries,
   });
 
+  const [height, width] = useWindowSize()
+
   const [searchValues, setSearchValues] = useState({address: "", lat: 0, lng: 0, zoom: 1});
+  const [mapZIndex, setMapZIndex] = useState(0)
 
   const [events, setEvents] = useState([{
       name: "",
@@ -46,7 +50,11 @@ function Events() {
   return (
       <div className='events-parent'>
         <div className='position-fix'>
-          <div className='events-child-map'>
+          {width < 600 ? 
+            <span title='Toggle map'>
+              <button className='mapToggleBtn' onClick={() => {setMapZIndex(mapZIndex === 1 ? 0 : 1)}} ><i class="fa fa-map"></i></button>
+            </span> : null}
+          <div className='events-child-map' style={{zIndex: mapZIndex}}>
             <div className='events-search'>
               <Search setSearchValues={setSearchValues} />
             </div>

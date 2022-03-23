@@ -7,6 +7,19 @@
     list-style-type: none;
     margin: 0;
 }
+@media (max-width:600px){
+    .displayEvents {
+        position: relative;
+        width: 100vw;
+        padding: 0;
+        left: 0;
+        border: none;
+        list-style-type: none;
+        margin: 0;
+    }
+}
+
+
 
 .address {
     color: rgb(160, 160, 160);
@@ -41,6 +54,12 @@ ul.no-bullets {
 .DEcarousel-item {
     width: 38vw;
     height: 40vh;
+}
+@media (max-width: 600px){
+    .DEcarousel-item {
+        width: 100vw;
+        height: 40vh;
+    }
 }
 .DEcarousel-img {
     display: block;

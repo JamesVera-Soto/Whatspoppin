@@ -9,6 +9,13 @@
     top: 70px;
     right: 40%;
 }
+@media (max-width: 600px){
+    .events-child-events {
+        position: relative;
+        top: 70px;
+        right: 0;
+    }
+}
 
 .events-search {
     display: table-cell;
@@ -16,4 +23,23 @@
     z-index: 10;
     top: 5%;
     left: calc(30vw - 150px);
+}
+@media (max-width:600px){
+    .events-search {
+        display: table-cell;
+        position: absolute;
+        z-index: 10;
+        top: 5%;
+        left: calc(50vw - 150px);
+    }
+}
+
+.mapToggleBtn{
+    position: fixed;
+    top: 75px;
+    left: 5px;
+    color: green;
+    font-size:x-large;
+    background-color: rgb(220, 230, 245);
+    z-index: 2;
 }
