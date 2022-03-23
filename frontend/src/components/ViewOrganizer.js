@@ -29,12 +29,12 @@ function ViewOrganizer() {
 
   const currentlyFollowing = authUser.currentUser !== null && authUser.currentUser.following.includes(id)
 
-  var url = new URL('http://localhost:3000/organizer')
+  var url = new URL('http://localhost:3000/api/organizer')
   var params = {id: id}
   url.search = new URLSearchParams(params).toString()
 
   useEffect(() => {
-    fetch('http://localhost:3001/organizer/' + id).then(res => {
+    fetch('http://localhost:3001/api/organizer/' + id).then(res => {
       if(res.ok) {
         return res.json()
       }
@@ -43,7 +43,7 @@ function ViewOrganizer() {
       }
     }).then(jsonRes => setOrganizer(jsonRes))
 
-    fetch('http://localhost:3001/events').then(res => {
+    fetch('http://localhost:3001/api/events').then(res => {
       if(res.ok) {
         return res.json()
       }

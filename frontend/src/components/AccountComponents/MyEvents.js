@@ -23,7 +23,7 @@ function MyEvents() {
   url.search = new URLSearchParams(params).toString()
 
   useEffect(() => {
-    fetch('http://localhost:3001/account/my-events/' + authUser.currentUser._id).then(res => {
+    fetch('http://localhost:3001/api/account/my-events/' + authUser.currentUser._id).then(res => {
       if(res.ok) {
         return res.json();
       }

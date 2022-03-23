@@ -25,7 +25,7 @@ export function AuthApiProvider({children}) {
     axios.defaults.withCredentials = true
 
     useEffect(() => {
-        axios.get("http://localhost:3001/login").then(response => {
+        axios.get("http://localhost:3001/api/login").then(response => {
             setAuth(response.data.loggedIn)
             if(response.data.loggedIn) setCurrentUser(response.data.user)
         })

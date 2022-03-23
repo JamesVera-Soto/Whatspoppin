@@ -97,11 +97,11 @@ router.post('/api/update-event', upload.any('addedImgs'), (req, res) => {
 
 });
 
-router.route('/events').get((req,res) => {
+router.route('/api/events').get((req,res) => {
     Event.find().then(foundEvents => res.json(foundEvents));
 });
 
-router.route('/event/:id').get((req,res) => {
+router.route('/api/event/:id').get((req,res) => {
     console.log("params for event", req.params)
     Event.findById(req.params.id, (err, data) => {
         if(!err) {
@@ -113,7 +113,7 @@ router.route('/event/:id').get((req,res) => {
     })
 });
 
-router.route('/account/my-events/:userId').get(async(req,res) => {
+router.route('/api/account/my-events/:userId').get(async(req,res) => {
     console.log("params",req.params)
     const user = await User.findById(req.params.userId)
     

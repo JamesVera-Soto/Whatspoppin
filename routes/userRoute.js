@@ -67,7 +67,7 @@ router.route('/signup').post(async (req, res) => {
     }
 });
 
-router.route('/login').get(async (req, res) => {
+router.route('/api/login').get(async (req, res) => {
     if(req.session.user) {
         const user = await User.findById(req.session.user._id)
         res.send({loggedIn: true, user: user})
@@ -117,7 +117,7 @@ router.route('/login').post(async (req, res) => {
     })
 })
 
-router.route('/organizer/:id').get((req,res) => {
+router.route('/api/organizer/:id').get((req,res) => {
     console.log("params for event", req.params)
     User.findOne({username: req.params.id}, (err, data) => {
         if(!err) {

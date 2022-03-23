@@ -11,7 +11,7 @@ function ViewEvent() {
   })
 
   useEffect(() => {
-    fetch('http://localhost:3001/event/' + id).then(res => {
+    fetch('http://localhost:3001/api/event/' + id).then(res => {
       if(res.ok) {
         return res.json();
       }
