@@ -78,8 +78,27 @@ function ViewOrganizer() {
     }
     else {
       console.log("unfollowing...")
+      axios.all([
+        axios.post('http://localhost:3001/api/updateUser', {
+          findByField: "_id", 
+          findByValue: authUser.currentUser._id, 
+          field: "following", 
+          action: '$pull',
+          value: id
+        }),
+        axios.post('http://localhost:3001/api/updateUser', {
+          findByField: "username", 
+          findByValue: id, 
+          field: "followers", 
+          action: '$pull',
+          value: authUser.currentUser.username
+        })
+      ])
+      .then(axios.spread((res1, res2) => {
+        console.log("res1: ", res1, "res2: ", res2)
+        authUserUpdate()
+      }))
     }
-
 
   }
 
