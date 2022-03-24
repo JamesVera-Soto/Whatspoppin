@@ -52,7 +52,7 @@ function Events() {
         <div className='position-fix'>
           {width < 600 ? 
             <span title='Toggle map'>
-              <button className='mapToggleBtn' onClick={() => {setMapZIndex(mapZIndex === 1 ? 0 : 1)}} ><i class="fa fa-map"></i></button>
+              <button className='mapToggleBtn' onClick={() => {setMapZIndex(mapZIndex === 1 ? 0 : 1)}} >Map<i class="fa fa-map"></i></button>
             </span> : null}
           <div className='events-child-map' style={{zIndex: mapZIndex}}>
             <div className='events-search'>

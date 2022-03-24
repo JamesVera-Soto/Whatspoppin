@@ -76,6 +76,33 @@ router.route('/api/login').get(async (req, res) => {
     }
 })
 
+router.route('/api/basicUserInfo/').get(async (req, res) => {
+    console.log("params for event", req.query.usernames)
+    var p = req.query.usernames
+    var users = []
+    for(var i = 0, str = ''; i < p.length; i++){
+        if(p[i] !== ',') {
+            str += p[i]
+            if(i === p.length - 1) users.push(str)
+        }
+        else {
+            users.push(str)
+            str = ''
+        }
+    }
+    console.log(users)
+
+    User.find({username: { $in: users }}, (err, data) => {
+        if(!err) {
+            
+            console.log(data)
+        } else {
+            console.log(err)
+            res.send({name: "Could not find", success: false})
+        }
+    })
+})
+
 router.route('/login').post(async (req, res) => {
 
     const field = validateEmail(req.body.usernameEmail) ? "email" : "username"
