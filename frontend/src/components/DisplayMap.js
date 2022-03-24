@@ -18,14 +18,14 @@ function DisplayMap(props) {
 
     
     const [mapContainerStyle, setMapContainerStyle] = useState({
-        width: width < 600 ? '10vw' : '60vw',
+        width: width < 800 ? '10vw' : '60vw',
         height: 'calc(100vh - 70px)',
     })
 
     useEffect(() => {
         console.log(width)
         setMapContainerStyle({
-            width: width < 600 ? '100vw' : '60vw',
+            width: width < 800 ? '100vw' : '60vw',
             height: 'calc(100vh - 70px)',
         })
     }, [width])

@@ -27,8 +27,6 @@ function AccountSidebar() {
 
             <li className='account-side-item'><Link className='nav-txt' to="/account/following">Following</Link></li>
 
-            <li className='account-side-item'><Link className='nav-txt' to="/account/notifications">Notifications</Link></li>
-
             <li className="account-side-item">
                 <Link className='nav-txt' onClick={SignOut} to='/'>Sign Out</Link>
             </li>

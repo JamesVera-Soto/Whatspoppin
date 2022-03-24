@@ -9,7 +9,7 @@
     top: 70px;
     right: 40%;
 }
-@media (max-width: 600px){
+@media (max-width: 800px){
     .events-child-events {
         position: relative;
         top: 70px;
@@ -24,7 +24,7 @@
     top: 5%;
     left: calc(30vw - 150px);
 }
-@media (max-width:600px){
+@media (max-width:800px){
     .events-search {
         display: table-cell;
         position: absolute;

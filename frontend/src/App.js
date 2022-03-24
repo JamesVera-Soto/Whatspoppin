@@ -45,7 +45,6 @@ function App() {
           <Route path="/account/my-events" element={<PrivateRoute><MyEvents /></PrivateRoute>} />
           <Route path="/account/followers" element={<PrivateRoute><Followers /></PrivateRoute>} />
           <Route path="/account/following" element={<PrivateRoute><Following /></PrivateRoute>} />
-          <Route path="/account/notifications" element={<PrivateRoute><Notifications /></PrivateRoute>} />
           <Route path="/account/create-event" element={<PrivateRoute><AccountCreateEvent /></PrivateRoute>} />
           <Route path="/account/my-events/:id" element={<PrivateRoute><EditEvent /></PrivateRoute>} />
 

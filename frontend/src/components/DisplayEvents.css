@@ -7,7 +7,7 @@
     list-style-type: none;
     margin: 0;
 }
-@media (max-width:600px){
+@media (max-width:800px){
     .displayEvents {
         position: relative;
         width: 100vw;
@@ -55,7 +55,7 @@ ul.no-bullets {
     width: 38vw;
     height: 40vh;
 }
-@media (max-width: 600px){
+@media (max-width: 800px){
     .DEcarousel-item {
         width: 100vw;
         height: 40vh;
