@@ -18,7 +18,7 @@ function AccountSidebar() {
     }
 
     return sideToggle ? <div className='account-side'>
-        {width < 900 && <button className='side-toggle-btn' type='button' onClick={() => {setSideToggle(sideToggle ? false : true)}} >Side Menu<i class="fa fa-bars"></i></button>}
+        {width < 900 && <button className='side-toggle-btn' type='button' onClick={() => {setSideToggle(sideToggle ? false : true)}} >Side Menu <i class="fa-solid fa-circle-arrow-left"></i></button>}
         <img src='/person-placeholder.png' className='account-avatar' alt=''></img>
         <p>{authUser.currentUser.username}</p>
 
@@ -39,7 +39,7 @@ function AccountSidebar() {
         </ul>
     </div>
     : <div className='account-side-colapsed'>
-        <button className='side-toggle-btn' type='button' onClick={() => {setSideToggle(sideToggle ? false : true)}} >Side Menu<i class="fa fa-bars"></i></button>
+        <button className='side-toggle-btn' type='button' onClick={() => {setSideToggle(sideToggle ? false : true)}} >Side Menu <i class="fa-solid fa-circle-arrow-right"></i></button>
     </div>
 }
 
