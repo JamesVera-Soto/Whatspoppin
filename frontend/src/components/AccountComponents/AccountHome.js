@@ -75,6 +75,7 @@ function AccountHome() {
       <AccountSidebar />
 
       <div className='account-content'>
+      <h4>Account Info</h4>
         <p>Username: {authUser.currentUser.username}</p>
         <p>email: {authUser.currentUser.email}</p>
         <p>Joined: {format(new Date(authUser.currentUser.memberSince), 'MMMM dd, yyyy, p')}</p>

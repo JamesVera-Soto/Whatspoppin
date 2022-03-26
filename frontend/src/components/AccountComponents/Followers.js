@@ -36,7 +36,7 @@ function Followers() {
       <AccountSidebar />
 
       <div className='account-content'>
-        <p>Followers</p>
+        <h4>Followers</h4>
 
         {userFollowers.map(follower => {
           return (

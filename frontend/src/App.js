@@ -12,7 +12,6 @@ import AccountHome from './components/AccountComponents/AccountHome';
 import MyEvents from './components/AccountComponents/MyEvents';
 import Followers from './components/AccountComponents/Followers';
 import Following from './components/AccountComponents/Following';
-import Notifications from './components/AccountComponents/Notifications';
 import {AuthApiProvider} from './AuthApi';
 import PrivateRoute from './PrivateRoute';
 import LoggedInRoute from './LoggedInRoute';

@@ -12,6 +12,8 @@
 .follow-box:hover {
     width: 130px;
     padding-left: 5px;
+    margin-left: 0;
+    margin-right: 0;
     color: rgb(252, 30, 141);
     background-color: rgba(73, 23, 39, 0.568)
 }

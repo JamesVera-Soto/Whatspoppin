@@ -53,7 +53,7 @@ function MyEvents() {
       <AccountSidebar />
 
       <div className='account-content'>
-        <p>My Events</p>
+        <h4>My Events</h4>
         {events.map(event => {
           return(
             <EventItem event={event} onDelete={deleteEvent} onView={viewEvent} onEdit={onEdit} />
