@@ -6,3 +6,5 @@ Bugs to fix:
 -userRoute change res.send to protect password
 -signout user when cookie expires
 -finish setting up followers/following
+
+when pushing to heroku, change multer save path, and get/post routes

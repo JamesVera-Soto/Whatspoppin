@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel'
+import { useInView } from 'react-intersection-observer';
 
 function Home() {
 
@@ -20,8 +21,20 @@ function Home() {
     'pexels-rodnae-productions-6173860.jpg'
   ]
 
+  const options = {
+    threshold: .10,
+    rootMargin: "-100px",
+  }
+  
+  const { ref: c1, inView: c1Visible } = useInView(options);
+  const { ref: c2, inView: c2Visible } = useInView(options);
+  const { ref: c3, inView: c3Visible } = useInView(options);
+  const { ref: c4, inView: c4Visible } = useInView(options);
+
+
+
   return <div className='home-page'>
-    <div className='banner-container'>
+    <section className='banner-container'>
       <div className='banner-imgs'>
         <h1 className='banner-txt'>Go out and explore</h1>
         <Carousel pause={false} controls={false} className='home-carousel' fade>
@@ -46,11 +59,11 @@ function Home() {
             <button className='homeRegister-btn' onClick={() => {navigate('/events')}}>Find Events</button>
         </div>
       </div>
-    </div>
+    </section>
 
 
-    <div className='home-container-r2'>
-      <div className='home-content-r2-c1'>
+    <section className='home-container-r2'>
+      <div ref={c1} className={c1Visible ? 'home-content-r2-c1 show' : 'home-content-r2-c1'}>
         <div className='home-content-c1-img'>
           <img className='content-img' src='/pageImages/small/gettyimages-855383198-612x612.jpg' alt='city' />
         </div>  
@@ -60,7 +73,7 @@ function Home() {
         </div>
       </div>
 
-      <div className='home-content-r2-c1'>
+      <div ref={c2} className={c2Visible ? 'home-content-r2-c1 show' : 'home-content-r2-c1'}>
         <div className='r2c1-text-panel'>
           <h2>Dicover New Places</h2>
           <p>With friends or just to get away</p>
@@ -70,7 +83,7 @@ function Home() {
         </div>
       </div>
 
-      <div className='home-content-r2-c1'>
+      <div ref={c3} className={c3Visible ? 'home-content-r2-c1 show' : 'home-content-r2-c1'}>
         <div className='home-content-c1-img'>
           <img className='content-img' src='/pageImages/small/gettyimages-1148769679-612x612.jpg' height="360px" alt='carnival game' />
         </div>  
@@ -80,7 +93,7 @@ function Home() {
         </div>
       </div>
 
-      <div className='home-content-r2-c1'>
+      <div ref={c4} className={c4Visible ? 'home-content-r2-c1 show' : 'home-content-r2-c1'}>
         <div className='r2c1-text-panel'>
           <h2>Join Group Activities</h2>
           <p>Socialize by joining one or more of many group events</p>
@@ -89,11 +102,16 @@ function Home() {
           <img className='content-img' src='/pageImages/small/gettyimages-1157908388-612x612.jpg' height="360px" alt='city' />
         </div>
       </div>
-    </div>  
+    </section>  
 
-    <div className='home-container-r3'>
+    <section className='home-container-r3'>
+            <h1>Click Below to Start Exploring Events Now!</h1>
+            <button className='homeRegister-btn r3-btn' onClick={() => {navigate('/events')}}>Find Events</button>
+    </section>
+
+    <footer className='footer'>
             <h4 className='pageTitle' style={{color:"gray"}}>Copyright © 2022 Whats Poppin</h4>
-    </div>
+    </footer>
   </div>;
 }
 

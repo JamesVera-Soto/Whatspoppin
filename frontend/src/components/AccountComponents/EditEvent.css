@@ -21,6 +21,8 @@
 }
 
 .img-deactivated {
-    width: 280px;
+    margin: 5px;
+    max-width: 280px;
+    max-height: 280px;
     filter: opacity(40%);
 }
