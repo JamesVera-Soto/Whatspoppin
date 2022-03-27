@@ -1,10 +1,12 @@
 import React, {useContext, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
 import axios from 'axios';
 import useWindowSize from '../../useWindowSize';
 
 function AccountSidebar() {
+
+    const navigate = useNavigate()
 
     const authUser = useAuthApi()
     const authUserUpdate = useAuthApiUpdate()
@@ -20,7 +22,7 @@ function AccountSidebar() {
     return sideToggle ? <div className='account-side'>
         {width < 900 && <button className='side-toggle-btn' type='button' onClick={() => {setSideToggle(sideToggle ? false : true)}} >Side Menu <i class="fa-solid fa-circle-arrow-left"></i></button>}
         <img src='/person-placeholder.png' className='account-avatar' alt=''></img>
-        <p>{authUser.currentUser.username}</p>
+        <p className='account-side-username' onClick={() => {navigate('/organizer/' + authUser.currentUser.username)}}>{authUser.currentUser.username}</p>
 
         <ul className='account-side-list'>
             <li className='account-side-item'><Link className='nav-txt' to="/account">Account Info</Link></li>
