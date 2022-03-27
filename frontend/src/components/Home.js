@@ -55,10 +55,8 @@ function Home() {
           <img className='content-img' src='/pageImages/small/gettyimages-855383198-612x612.jpg' alt='city' />
         </div>  
         <div className='r2c1-text-panel'>
-          <div className='r2c1-text'>
-            <h2>Find Events Near You</h2>
-            <p>Traveling to a new city and looking for what to do? Or just looking to find something new in your city? Whats Poppin has all the events you're looking for.</p>
-          </div>
+          <h2>Find Events Near You</h2>
+          <p>Traveling to a new city and looking for what to do? Or just looking to find something new in your city? Whats Poppin has all the events you're looking for.</p>
         </div>
       </div>
 
@@ -84,10 +82,8 @@ function Home() {
 
       <div className='home-content-r2-c1'>
         <div className='r2c1-text-panel'>
-          <div className='r2c1-text'>
-            <h2>Join Group Activities</h2>
-            <p>Socialize by joining one or more of many group events</p>
-          </div>
+          <h2>Join Group Activities</h2>
+          <p>Socialize by joining one or more of many group events</p>
         </div>
         <div className='home-content-c1-img'>
           <img className='content-img' src='/pageImages/small/gettyimages-1157908388-612x612.jpg' height="360px" alt='city' />
