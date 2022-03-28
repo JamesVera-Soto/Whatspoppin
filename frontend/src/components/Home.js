@@ -107,6 +107,11 @@ function Home() {
     <section className='home-container-r3'>
             <h1>Click Below to Start Exploring Events Now!</h1>
             <button className='homeRegister-btn r3-btn' onClick={() => {navigate('/events')}}>Find Events</button>
+            <h1>Create Your Own Events</h1>
+            <div className='r3-btns'>
+              <button className='homeRegister-btn r3-btn2' onClick={() => {navigate('/login')}}>Log In</button>
+              <button className='homeRegister-btn r3-btn2' onClick={() => {navigate('/signup')}}>Sign Up</button>
+            </div>
     </section>
 
     <footer className='footer'>

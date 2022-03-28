@@ -56,6 +56,7 @@ router.route('/signup').post(async (req, res) => {
                 password: hashedPassword,
                 memberSince: dateCreated,
                 userEvents: [],
+                avatar: 'person-placeholder.png',
             })
 
             newUser.save();
