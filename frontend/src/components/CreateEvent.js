@@ -56,14 +56,11 @@ function CreateEvent() {
     function handleChange(event){
         let {name, value} = event.target;
 
-        console.log(event);
-
         if(name === "imgs") {
             value = event.target.files;
         }
 
         setEventInput(prevInput => {
-            console.log(prevInput);
             return {
                 ...prevInput,
                 [name]: value,
@@ -90,8 +87,6 @@ function CreateEvent() {
         }
 
         const mes = await axios.post('http://localhost:3001/create-event', formData);
-
-        console.log(mes)
 
         if(mes.status === 201){
             setIncorrectField({

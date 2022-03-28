@@ -25,10 +25,7 @@ function Signup() {
   function handleChange(event){
       let {name, value} = event.target;
 
-      console.log(event);
-
       setSignupInput(prevInput => {
-          console.log(prevInput);
           return {
               ...prevInput,
               [name]: value,
@@ -38,7 +35,6 @@ function Signup() {
 
   async function handleClick(event){
       event.preventDefault();
-      console.log(signupInput);
 
       if(signupInput.password !== signupInput.confirmPassword || signupInput.password === "") {
         alert("passwords do not match");
@@ -48,8 +44,6 @@ function Signup() {
         const newUser = signupInput;
 
         const mes = await axios.post('http://localhost:3001/signup', newUser);
-
-        console.log(mes)
 
         if(mes.status === 201){
           navigate('/login');

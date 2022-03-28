@@ -26,8 +26,6 @@ function ViewEvent() {
   var multipleImages = true
   if(event.success !== false && event.imgs.length === 0) event.imgs = ['placeholder-image.png']
   if(event.success !== false && event.imgs.length === 1) multipleImages = false
-
-  console.log(event)
   
 
   if(event.success === false) return <div>

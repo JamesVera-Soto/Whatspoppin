@@ -70,14 +70,12 @@ function ViewOrganizer() {
         })
       ])
       .then(axios.spread((res1, res2) => {
-        console.log("res1: ", res1, "res2: ", res2)
         authUserUpdate()
       }))
 
       
     }
     else {
-      console.log("unfollowing...")
       axios.all([
         axios.post('http://localhost:3001/api/updateUser', {
           findByField: "_id", 
@@ -95,7 +93,6 @@ function ViewOrganizer() {
         })
       ])
       .then(axios.spread((res1, res2) => {
-        console.log("res1: ", res1, "res2: ", res2)
         authUserUpdate()
       }))
     }

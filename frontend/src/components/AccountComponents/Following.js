@@ -20,7 +20,6 @@ function Following() {
   url.search = new URLSearchParams(params).toString()
 
   useEffect(() => {
-    console.log(url, url.search)
     fetch(url).then(res => {
       if(res.ok) {
         return res.json()

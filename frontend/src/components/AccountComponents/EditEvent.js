@@ -149,8 +149,6 @@ function EditEvent() {
 
         const mes = await axios.post('http://localhost:3001/api/update-event', formData);
 
-        console.log(mes)
-
         if(mes.status === 201){
             setIncorrectField({
                 status: true,

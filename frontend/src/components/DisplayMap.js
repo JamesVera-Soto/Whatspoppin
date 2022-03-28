@@ -13,9 +13,6 @@ import {
 function DisplayMap(props) {
 
     const [height, width] = useWindowSize()
-
-    console.log(props)
-
     
     const [mapContainerStyle, setMapContainerStyle] = useState({
         width: width < 800 ? '10vw' : '60vw',
@@ -23,7 +20,6 @@ function DisplayMap(props) {
     })
 
     useEffect(() => {
-        console.log(width)
         setMapContainerStyle({
             width: width < 800 ? '100vw' : '60vw',
             height: 'calc(100vh - 70px)',

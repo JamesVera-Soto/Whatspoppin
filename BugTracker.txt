@@ -8,3 +8,4 @@ Bugs to fix:
 -finish setting up followers/following
 
 when pushing to heroku, change multer save path, and get/post routes
+also remove all the unneeded console logs

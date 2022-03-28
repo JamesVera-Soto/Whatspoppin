@@ -8,14 +8,11 @@ import useWindowSize from '../useWindowSize';
 function DisplayEvents(props) {
 
     const [height, width] = useWindowSize()
-
-    console.log(props.events);
     
     return props.events.length === 0 ? <div className='displayEvents'>No events found</div> :
     (
         <ul className='displayEvents'>
         {props.events.map((event, i) => {
-            console.log(event.imgs)
 
             var multipleImages = true
             if(event.imgs.length === 0) event.imgs = ['placeholder-image.png']

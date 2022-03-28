@@ -36,8 +36,6 @@ function Navbar(props) {
         await axios.post('http://localhost:3001/signout').then(authUserUpdate())
     }
 
-    console.log("navbar: ", authUser)
-
 
     return (
         <nav className="navbar navbar-expand-lg title-bar py-0">

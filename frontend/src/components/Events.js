@@ -41,8 +41,6 @@ function Events() {
     }).then(jsonRes => setEvents(jsonRes));
   }, [searchValues]);
 
-  console.log(events);
-
   
   if (loadError) return "Error";
   if (!isLoaded) return "Loading..";

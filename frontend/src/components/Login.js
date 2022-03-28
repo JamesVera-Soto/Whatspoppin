@@ -39,13 +39,9 @@ function Login() {
 	async function handleClick(event) {
 		event.preventDefault();
 
-		console.log(loginInput);
-
 		const returningUser = loginInput;
 
         const mes = await axios.post('http://localhost:3001/login', returningUser);
-
-		console.log(mes)
 
 		if(mes.data.success){
 			await authUserUpdate()

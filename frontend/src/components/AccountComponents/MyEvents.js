@@ -16,8 +16,6 @@ function MyEvents() {
 
   const authUser = useAuthApi()
 
-  console.log("username",authUser.currentUser)
-
   var url = new URL('http://localhost:3000/account/my-events')
   var params = {organizer: authUser.currentUser.currentUser}
   url.search = new URLSearchParams(params).toString()
@@ -33,9 +31,7 @@ function MyEvents() {
   async function deleteEvent(id) {
     var result = window.confirm("Are you sure you want to delete this event?")
     if(result) {
-        console.log("deleting")
         const mes = await axios.post('/account/my-events/delete', {id: id})
-        console.log(mes)
         setUpdated(!updated)
     }
   }
