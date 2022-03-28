@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
 import AccountSidebar from './AccountSidebar';
@@ -13,7 +13,9 @@ function Followers() {
   const authUser = useAuthApi()
   const authUserUpdate = useAuthApiUpdate()
 
-  const userFollowers = authUser.currentUser !== null && authUser.currentUser.followers
+  var folder = "/avatars/"
+
+  const [userFollowers, setUserFollowers] = useState(authUser.currentUser !== null ? authUser.currentUser.followers : [])
 
   var url = new URL('http://localhost:3001/api/basicUserInfo/')
   var params = {usernames: userFollowers}
@@ -21,13 +23,14 @@ function Followers() {
 
   useEffect(() => {
     fetch(url).then(res => {
+      console.log(res)
       if(res.ok) {
         return res.json()
       }
       else {
         console.log("oops idk")
       }
-    }).then(jsonRes => {console.log(jsonRes)})
+    }).then(jsonRes => {setUserFollowers(jsonRes)})
   }, []);
 
   return <div>
@@ -37,11 +40,11 @@ function Followers() {
       <div className='account-content'>
         <h4>Followers</h4>
 
-        {userFollowers.map(follower => {
+        {userFollowers.map((follower) => {
           return (
-            <div className='follow-box' onClick={() => {navigate('/organizer/' + follower)}}>
-              <img src='/person-placeholder.png' className='small-avatar-img' alt=''></img>
-              <p>{follower}</p>
+            <div className='follow-box' onClick={() => {navigate('/organizer/' + follower.username)}}>
+              <img src={folder + follower.avatar} className='small-avatar-img' alt=''></img>
+              <p>{follower.username}</p>
             </div>
           )
         })}

@@ -93,15 +93,7 @@ router.route('/api/basicUserInfo/').get(async (req, res) => {
     }
     console.log(users)
 
-    User.find({username: { $in: users }}, (err, data) => {
-        if(!err) {
-            
-            console.log(data)
-        } else {
-            console.log(err)
-            res.send({name: "Could not find", success: false})
-        }
-    })
+    User.find({username: { $in: users }}).then(foundUsers => res.json(foundUsers))
 })
 
 router.route('/login').post(async (req, res) => {

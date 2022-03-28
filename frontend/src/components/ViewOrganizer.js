@@ -10,6 +10,8 @@ function ViewOrganizer() {
   const authUser = useAuthApi()
   const authUserUpdate = useAuthApiUpdate()
 
+  var folder = "/avatars/"
+
   const { id } = useParams()
   const [organizer, setOrganizer] = useState({
     username: "Loading...",
@@ -111,7 +113,7 @@ function ViewOrganizer() {
   else return <div>
     <div className='organizerPane'>
       <h4>{organizer.username}</h4>
-      <img src='/person-placeholder.png' className='organizer-avatar' alt=''></img>
+      <img src={folder + organizer.avatar} className='organizer-avatar' alt=''></img>
       <p>{organizer.email}</p>
       <button onClick={authUser.auth ? handleFollow : () => {console.log("must be logged in")}}>{currentlyFollowing ? "Unfollow" : "Follow"}</button>
     </div>
