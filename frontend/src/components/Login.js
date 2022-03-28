@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import './LoginSignup.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
+import { useAuthApi, useAuthApiUpdate, useRouteAddress } from '../AuthApi';
 
 function Login() {
 
@@ -10,6 +10,7 @@ function Login() {
 
 	const authUser = useAuthApi()
 	const authUserUpdate = useAuthApiUpdate()
+	const routeAddress = useRouteAddress()
 
 	const navigate = useNavigate();
 
@@ -41,7 +42,7 @@ function Login() {
 
 		const returningUser = loginInput;
 
-        const mes = await axios.post('http://localhost:3001/login', returningUser);
+        const mes = await axios.post(routeAddress + '/login', returningUser);
 
 		if(mes.data.success){
 			await authUserUpdate()

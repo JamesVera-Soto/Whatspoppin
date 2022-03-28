@@ -5,10 +5,13 @@ import axios from 'axios';
 import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import {useLoadScript} from "@react-google-maps/api";
 import Search from '../Search'
+import { useRouteAddress } from '../../AuthApi';
 
 const libraries = ['places'];
 
 function EditEvent() {
+
+    const routeAddress = useRouteAddress()
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -38,7 +41,7 @@ function EditEvent() {
     const [imgActive, setImgActive] = useState()
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/event/' + id).then(res => {
+        fetch(routeAddress + '/api/event/' + id).then(res => {
             if(res.ok) {
                 return res.json();
             }
@@ -63,7 +66,7 @@ function EditEvent() {
                 lng: jsonRes.lng
             })
         });
-    }, []);
+    }, [routeAddress]);
 
     function handleChange(e){
         let {name, value} = e.target;
@@ -147,7 +150,7 @@ function EditEvent() {
             formData.append("addedImgs[]", img)
         }
 
-        const mes = await axios.post('http://localhost:3001/api/update-event', formData);
+        const mes = await axios.post(routeAddress + '/api/update-event', formData);
 
         if(mes.status === 201){
             setIncorrectField({

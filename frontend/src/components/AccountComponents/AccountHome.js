@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './AccountHome.css'
 import { format } from 'date-fns'
 import AccountSidebar from './AccountSidebar';
-import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
+import { useAuthApi, useAuthApiUpdate, useRouteAddress } from '../../AuthApi';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
     
@@ -23,12 +23,13 @@ function AccountHome() {
 
   const authUser = useAuthApi()
   const authUserUpdate = useAuthApiUpdate()
+  const routeAddress = useRouteAddress()
 
   async function handleClick(event) {
     event.preventDefault();
     if(changePassword.password !== changePassword.confirmPassword) console.log("passwords don't match")
     else{
-      const mes = await axios.post('http://localhost:3001/api/updateUser', {
+      const mes = await axios.post(routeAddress + '/api/updateUser', {
           findByField: "_id", 
           findByValue: authUser.currentUser._id, 
           field: "password", 
@@ -58,7 +59,7 @@ function AccountHome() {
     var result = window.confirm("Are you sure you want to delete your account?")
     if(result) {
       console.log("deleting account...")
-      const mes = await axios.post('http://localhost:3001/api/deleteAccount', {
+      const mes = await axios.post(routeAddress + '/api/deleteAccount', {
         id: authUser.currentUser._id,
         username: authUser.currentUser.username
       })

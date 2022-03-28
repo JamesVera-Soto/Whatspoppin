@@ -3,7 +3,7 @@ import Search from './Search';
 import './CreateEvent.css';
 import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import axios from 'axios';
-import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
+import { useAuthApi, useAuthApiUpdate, useRouteAddress } from '../AuthApi';
 import {useLoadScript} from "@react-google-maps/api";
 import { useNavigate } from 'react-router-dom'
 
@@ -12,6 +12,8 @@ const libraries = ['places'];
 function CreateEvent() {
 
     const navigate = useNavigate()
+
+    const routeAddress = useRouteAddress()
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -86,7 +88,7 @@ function CreateEvent() {
             formData.append("imgs[]", img)
         }
 
-        const mes = await axios.post('http://localhost:3001/create-event', formData);
+        const mes = await axios.post(routeAddress + '/create-event', formData);
 
         if(mes.status === 201){
             setIncorrectField({

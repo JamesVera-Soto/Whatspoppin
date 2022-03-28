@@ -3,6 +3,7 @@ import { Link, useParams} from 'react-router-dom'
 import { format } from 'date-fns'
 import Carousel from 'react-bootstrap/Carousel'
 import './ViewEvent.css'
+import { useRouteAddress } from '../AuthApi';
 
 function ViewEvent() {
 
@@ -12,8 +13,10 @@ function ViewEvent() {
     success: false
   })
 
+  const routeAddress = useRouteAddress()
+
   useEffect(() => {
-    fetch('http://localhost:3001/api/event/' + id).then(res => {
+    fetch(routeAddress + '/api/event/' + id).then(res => {
       if(res.ok) {
         return res.json();
       }
@@ -21,7 +24,7 @@ function ViewEvent() {
         setEvent({name: "Sorry something went wrong"})
       }
     }).then(jsonRes => setEvent(jsonRes));
-  }, []);
+  }, [routeAddress, id]);
 
   var multipleImages = true
   if(event.success !== false && event.imgs.length === 0) event.imgs = ['placeholder-image.png']
@@ -58,7 +61,7 @@ function ViewEvent() {
         })}
     </Carousel>
     <p>Organizer: <Link to={"/organizer/" + event.organizer}>{event.organizer}</Link></p>
-    <iframe name="gMap" src={`https://www.google.com/maps/embed/v1/place?q=${event.lat},${ event.lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`} width="400px" height="400px"></iframe>
+    <iframe title='event-location' name="gMap" src={`https://www.google.com/maps/embed/v1/place?q=${event.lat},${ event.lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`} width="400px" height="400px"></iframe>
   </div>
 }
 

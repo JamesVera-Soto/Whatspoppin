@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AccountSidebar from './AccountSidebar';
-import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
+import { useAuthApi, useAuthApiUpdate, useRouteAddress } from '../../AuthApi';
 import EventItem from './EventItem';
 import './EventItem.css'
 import axios from 'axios'
@@ -15,18 +15,19 @@ function MyEvents() {
   const [updated, setUpdated] = useState(false)
 
   const authUser = useAuthApi()
+  const routeAddress = useRouteAddress()
 
-  var url = new URL('http://localhost:3000/account/my-events')
+  var url = new URL(routeAddress + '/api/account/my-events')
   var params = {organizer: authUser.currentUser.currentUser}
   url.search = new URLSearchParams(params).toString()
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/account/my-events/' + authUser.currentUser._id).then(res => {
+    fetch(routeAddress + '/api/account/my-events/' + authUser.currentUser._id).then(res => {
       if(res.ok) {
         return res.json();
       }
     }).then(jsonRes => setEvents(jsonRes));
-  }, [updated]);
+  }, [updated, routeAddress]);
 
   async function deleteEvent(id) {
     var result = window.confirm("Are you sure you want to delete this event?")

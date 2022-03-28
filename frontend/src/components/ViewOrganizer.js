@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
+import { useAuthApi, useAuthApiUpdate, useRouteAddress } from '../AuthApi';
 import axios from 'axios';
 import DisplayEvents from './DisplayEvents';
 import './ViewOrganizer.css'
@@ -9,6 +9,7 @@ function ViewOrganizer() {
 
   const authUser = useAuthApi()
   const authUserUpdate = useAuthApiUpdate()
+  const routeAddress = useRouteAddress()
 
   var folder = "/avatars/"
 
@@ -31,12 +32,12 @@ function ViewOrganizer() {
 
   const currentlyFollowing = authUser.currentUser !== null && authUser.currentUser.following.includes(id)
 
-  var url = new URL('http://localhost:3000/api/organizer')
+  var url = new URL(routeAddress + '/api/organizer')
   var params = {id: id}
   url.search = new URLSearchParams(params).toString()
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/organizer/' + id).then(res => {
+    fetch(routeAddress + '/api/organizer/' + id).then(res => {
       if(res.ok) {
         return res.json()
       }
@@ -45,25 +46,25 @@ function ViewOrganizer() {
       }
     }).then(jsonRes => setOrganizer(jsonRes))
 
-    fetch('http://localhost:3001/api/events').then(res => {
+    fetch(routeAddress + '/api/events').then(res => {
       if(res.ok) {
         return res.json()
       }
     }).then(jsonRes => setEvents(jsonRes));
-  }, []);
+  }, [routeAddress, id]);
 
 
   function handleFollow() {
     if(!currentlyFollowing){
       axios.all([
-        axios.post('http://localhost:3001/api/updateUser', {
+        axios.post(routeAddress + '/api/updateUser', {
           findByField: "_id", 
           findByValue: authUser.currentUser._id, 
           field: "following", 
           action: '$push',
           value: id
         }),
-        axios.post('http://localhost:3001/api/updateUser', {
+        axios.post(routeAddress + '/api/updateUser', {
           findByField: "username", 
           findByValue: id, 
           field: "followers", 
@@ -79,14 +80,14 @@ function ViewOrganizer() {
     }
     else {
       axios.all([
-        axios.post('http://localhost:3001/api/updateUser', {
+        axios.post(routeAddress + '/api/updateUser', {
           findByField: "_id", 
           findByValue: authUser.currentUser._id, 
           field: "following", 
           action: '$pull',
           value: id
         }),
-        axios.post('http://localhost:3001/api/updateUser', {
+        axios.post(routeAddress + '/api/updateUser', {
           findByField: "username", 
           findByValue: id, 
           field: "followers", 

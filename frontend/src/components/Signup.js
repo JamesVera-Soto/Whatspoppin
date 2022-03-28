@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 import './LoginSignup.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useRouteAddress } from '../AuthApi';
 
 function Signup() {
 
   document.title = "Sign Up - Whats Poppin"
 
   const navigate = useNavigate();
+
+  const routeAddress = useRouteAddress()
 
   const blankInput = {
     username: "",
@@ -43,7 +46,7 @@ function Signup() {
 
         const newUser = signupInput;
 
-        const mes = await axios.post('http://localhost:3001/signup', newUser);
+        const mes = await axios.post(routeAddress + '/signup', newUser);
 
         if(mes.status === 201){
           navigate('/login');

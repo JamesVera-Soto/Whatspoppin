@@ -1,6 +1,6 @@
-import React, {useContext, useState} from 'react';
+import React, { useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
+import { useAuthApi, useAuthApiUpdate, useRouteAddress } from '../../AuthApi';
 import axios from 'axios';
 import useWindowSize from '../../useWindowSize';
 import './AvatarSelect.css'
@@ -11,6 +11,7 @@ function AccountSidebar() {
 
     const authUser = useAuthApi()
     const authUserUpdate = useAuthApiUpdate()
+    const routeAddress = useRouteAddress()
 
     var folder = "/avatars/"
     var files = [
@@ -32,7 +33,7 @@ function AccountSidebar() {
     const [successMes, setSuccessMes] = useState(null)
 
     async function handleClick(file) {
-        axios.post('http://localhost:3001/api/updateUser', {
+        axios.post(routeAddress + '/api/updateUser', {
             findByField: "_id", 
             findByValue: authUser.currentUser._id, 
             field: "avatar", 
@@ -45,7 +46,7 @@ function AccountSidebar() {
     }
 
     const SignOut = async () => {
-        await axios.post('http://localhost:3001/signout').then(authUserUpdate())
+        await axios.post(routeAddress + '/signout').then(authUserUpdate())
     }
 
     return sideToggle ? <div className='account-side'>

@@ -5,6 +5,7 @@ import DisplayEvents from './DisplayEvents';
 import './Events.css';
 import {useLoadScript} from "@react-google-maps/api";
 import useWindowSize from '../useWindowSize'
+import { useRouteAddress } from '../AuthApi';
 
 const libraries = ['places'];
 
@@ -16,6 +17,8 @@ function Events() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
+
+  const routeAddress = useRouteAddress()
 
   const [height, width] = useWindowSize()
 
@@ -34,12 +37,12 @@ function Events() {
   }]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/events').then(res => {
+    fetch(routeAddress + '/api/events').then(res => {
       if(res.ok) {
         return res.json();
       }
     }).then(jsonRes => setEvents(jsonRes));
-  }, [searchValues]);
+  }, [searchValues, routeAddress]);
 
   
   if (loadError) return "Error";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthApi, useAuthApiUpdate } from '../../AuthApi';
+import { useAuthApi, useAuthApiUpdate, useRouteAddress } from '../../AuthApi';
 import AccountSidebar from './AccountSidebar';
 import './Follow.css'
 
@@ -12,12 +12,13 @@ function Followers() {
 
   const authUser = useAuthApi()
   const authUserUpdate = useAuthApiUpdate()
+  const routeAddress = useRouteAddress()
 
   var folder = "/avatars/"
 
   const [userFollowers, setUserFollowers] = useState(authUser.currentUser !== null ? authUser.currentUser.followers : [])
 
-  var url = new URL('http://localhost:3001/api/basicUserInfo/')
+  var url = new URL(routeAddress + '/api/basicUserInfo/')
   var params = {usernames: userFollowers}
   url.search = new URLSearchParams(params).toString()
 

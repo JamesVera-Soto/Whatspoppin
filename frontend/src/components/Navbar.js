@@ -1,7 +1,7 @@
 import './Navbar.css';
 import React, { useContext, useRef, useLayoutEffect, useState } from 'react';
 import {Link, Navigate} from 'react-router-dom';
-import { useAuthApi, useAuthApiUpdate } from '../AuthApi';
+import { useAuthApi, useAuthApiUpdate, useRouteAddress } from '../AuthApi';
 import axios from 'axios';
 
 
@@ -9,6 +9,7 @@ function Navbar(props) {
 
     const authUser = useAuthApi()
     const authUserUpdate = useAuthApiUpdate()
+    const routeAddress = useRouteAddress()
 
     function useWindowSize() {
       const [size, setSize] = useState([0, 0]);
@@ -33,7 +34,7 @@ function Navbar(props) {
     }
 
     const SignOut = async () => {
-        await axios.post('http://localhost:3001/signout').then(authUserUpdate())
+        await axios.post(routeAddress + '/signout').then(authUserUpdate())
     }
 
 
