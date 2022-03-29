@@ -8,9 +8,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 
-//   || process.env.MONGODB_EVENTSDB
+//  
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_EVENTSDB);
 
 mongoose.connection.on("connected", () => {
     console.log("Mongoose is connected!!")
@@ -56,7 +56,7 @@ app.post('/signout', (req, res) => {
     })
 })
 
-if(process.env.NODE_ENV === 'production') {
+if(true || process.env.NODE_ENV === 'production') {
     console.log("production")
     app.use(express.static('frontend/build'))
 
