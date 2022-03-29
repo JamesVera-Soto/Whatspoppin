@@ -23,7 +23,7 @@ function Events() {
   const [height, width] = useWindowSize()
 
   const [searchValues, setSearchValues] = useState({address: "", lat: 0, lng: 0, zoom: 1});
-  const [mapZIndex, setMapZIndex] = useState(0)
+  const [eventsZIndex, setEventsZIndex] = useState(0)
 
   const [events, setEvents] = useState([{
       name: "",
@@ -53,15 +53,15 @@ function Events() {
         <div className='position-fix'>
           {width < 800 ? 
             <span title='Toggle map'>
-              <button className='mapToggleBtn' onClick={() => {setMapZIndex(mapZIndex === 1 ? 0 : 1)}} >Map<i class="fa fa-map"></i></button>
+              <button className='mapToggleBtn' onClick={() => {setEventsZIndex(eventsZIndex === 0 ? -1 : 0)}} >Map<i class="fa fa-map"></i></button>
             </span> : null}
-          <div className='events-child-map' style={{zIndex: mapZIndex}}>
+          <div className='events-child-map' style={{zIndex: 0}}>
             <div className='events-search'>
               <Search setSearchValues={setSearchValues} />
             </div>
             <DisplayMap events={events} setSearched={setSearchValues} searched={searchValues} />
           </div>
-          <div className='events-child-events'>
+          <div className='events-child-events' style={{zIndex: eventsZIndex}}>
             <DisplayEvents events={events} />
           </div>
         </div>
