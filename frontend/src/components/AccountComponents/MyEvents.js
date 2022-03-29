@@ -17,10 +17,6 @@ function MyEvents() {
   const authUser = useAuthApi()
   const routeAddress = useRouteAddress()
 
-  var url = new URL(routeAddress + '/api/account/my-events')
-  var params = {organizer: authUser.currentUser.currentUser}
-  url.search = new URLSearchParams(params).toString()
-
   useEffect(() => {
     fetch(routeAddress + '/api/account/my-events/' + authUser.currentUser._id).then(res => {
       if(res.ok) {

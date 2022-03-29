@@ -32,10 +32,6 @@ function ViewOrganizer() {
 
   const currentlyFollowing = authUser.currentUser !== null && authUser.currentUser.following.includes(id)
 
-  var url = new URL(routeAddress + '/api/organizer')
-  var params = {id: id}
-  url.search = new URLSearchParams(params).toString()
-
   useEffect(() => {
     fetch(routeAddress + '/api/organizer/' + id).then(res => {
       if(res.ok) {

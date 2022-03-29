@@ -18,7 +18,7 @@ function Followers() {
 
   const [userFollowers, setUserFollowers] = useState(authUser.currentUser !== null ? authUser.currentUser.followers : [])
 
-  var url = new URL(routeAddress + '/api/basicUserInfo/')
+  var url = new URL("https://jameseveras-whatspoppin.herokuapp.com" + '/api/basicUserInfo/')
   var params = {usernames: userFollowers}
   url.search = new URLSearchParams(params).toString()
 

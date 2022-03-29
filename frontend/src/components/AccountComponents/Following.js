@@ -18,7 +18,7 @@ function Following() {
 
   const [userFollowing, setUserFollowing] = useState(authUser.currentUser !== null ? authUser.currentUser.following : [])
 
-  var url = new URL(routeAddress + '/api/basicUserInfo/')
+  var url = new URL("https://jameseveras-whatspoppin.herokuapp.com" + '/api/basicUserInfo/')
   var params = {usernames: userFollowing}
   url.search = new URLSearchParams(params).toString()
 
