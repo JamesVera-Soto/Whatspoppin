@@ -11,15 +11,15 @@ frontend/node_modules
 /coverage
 
 # dir to ignore
-frontend/.env.local
+#frontend/.env.local
 
 # production
-frontend/build
+#frontend/build
 
 # misc
 .DS_Store
-.env
-.env.local
+#.env
+#.env.local
 .env.development.local
 .env.test.local
 .env.production.local
