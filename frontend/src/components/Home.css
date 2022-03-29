@@ -220,6 +220,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    gap: 15px;
 }
 
 .homeRegister-btn.r3-btn2 {
