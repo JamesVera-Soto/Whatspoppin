@@ -16,7 +16,7 @@ export function useAuthApiUpdate() {
 
 export function useRouteAddress() {
     const routes = ["", "http://localhost:3001"]
-    const routeAddress = routes[1]
+    const routeAddress = routes[0]
     return routeAddress
 }
 

@@ -8,9 +8,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 
-// process.env.MONGODB_URI ||
+//  || process.env.MONGODB_EVENTSDB
 
-mongoose.connect(process.env.MONGODB_EVENTSDB);
+mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on("connected", () => {
     console.log("Mongoose is connected!!")
