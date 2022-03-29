@@ -8,7 +8,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 
-//  || process.env.MONGODB_EVENTSDB
+//   || process.env.MONGODB_EVENTSDB
 
 mongoose.connect(process.env.MONGODB_URI);
 
