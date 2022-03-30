@@ -42,8 +42,8 @@ function EventItem(props) {
                                 alt="img slide"
                                 />
                                 <Carousel.Caption>
-                                <h3>{props.event.name}</h3>
-                                <p>{props.event.description}</p>
+                                <h3>{props.event.name.substr(0,35)}</h3>
+                                <p>{props.event.description.substr(0, 50)}</p>
                                 </Carousel.Caption>
                             </Carousel.Item>)
                         })}

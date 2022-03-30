@@ -9,6 +9,7 @@ const path = require('path')
 
 const multer = require('multer');
 const { append } = require('vary');
+const { isNullOrUndefined } = require('util');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -80,7 +81,7 @@ router.post('/api/update-event', upload.any('addedImgs'), (req, res) => {
         lng: req.body.lng,
         startDatetime: req.body.startDatetime,
         endDatetime: req.body.endDatetime,
-        imgs: imgArr,
+        imgs: imgArr === undefined ? [] : imgArr,
         organizer: req.body.organizer,
     }
 

@@ -76,7 +76,7 @@ function Home() {
       <div ref={c2} className={c2Visible ? 'home-content-r2-c1 show' : 'home-content-r2-c1'}>
         <div className='r2c1-text-panel'>
           <h2>Dicover New Places</h2>
-          <p>With friends or just to get away</p>
+          <p>With friends or just to get away.</p>
         </div>
         <div className='home-content-c1-img'>
           <img className='content-img' src='/pageImages/small/gettyimages-1159841835-612x612.jpg' alt='carnival game' />
@@ -89,14 +89,14 @@ function Home() {
         </div>  
         <div className='r2c1-text-panel'>
           <h2>Stay Up to Date</h2>
-          <p>Follow your favorite organizers and venues</p>
+          <p>Follow your favorite organizers and venues.</p>
         </div>
       </div>
 
       <div ref={c4} className={c4Visible ? 'home-content-r2-c1 show' : 'home-content-r2-c1'}>
         <div className='r2c1-text-panel'>
           <h2>Join Group Activities</h2>
-          <p>Socialize by joining one or more of many group events</p>
+          <p>Socialize by joining one or more of many group events.</p>
         </div>
         <div className='home-content-c1-img'>
           <img className='content-img' src='/pageImages/small/gettyimages-1157908388-612x612.jpg' height="360px" alt='city' />
