@@ -109,6 +109,20 @@
   opacity: 1;
 }
 
+@media (max-height:400px){
+    .homeRegisterBox {
+        top: 35px;
+    }
+    
+    button.homeRegister-btn {
+        margin-top: calc(33vh - 60px);
+    }
+
+    button.r3-btn {
+        margin-top: 60px;
+    }
+}
+
   
 .home-container-r2 {
     display: flex;
