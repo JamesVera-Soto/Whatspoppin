@@ -67,7 +67,7 @@ router.post('/create-event', upload.any('imgs'), (req, res) => {
 
 router.post('/api/update-event', upload.any('addedImgs'), (req, res) => {
 
-    var imgArr = req.body.imgs
+    var imgArr = req.body.imgs === undefined ? [] : req.body.imgs
     for(var img of req.files){
         var filename = img.originalname.replace(/[^a-zA-Z0-9-_\.]/g, '_');
         imgArr.push(filename)
